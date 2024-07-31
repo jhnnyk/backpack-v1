@@ -1,7 +1,8 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 
 export const useStoreTodos = defineStore('todos', () => {
+  // state
   const todos = ref([
     {
       id: 'id1',
@@ -33,7 +34,13 @@ export const useStoreTodos = defineStore('todos', () => {
     },
   ])
 
+  // getters
+  const pageTodos = computed(() => {
+    return (pageId) => todos.value.filter((todo) => todo.pageId == pageId)
+  })
+
   return {
     todos,
+    pageTodos,
   }
 })
