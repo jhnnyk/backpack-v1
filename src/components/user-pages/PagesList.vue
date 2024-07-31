@@ -1,6 +1,6 @@
 <template>
   <q-list v-for="page in storePages.pages" :key="page.id">
-    <q-item clickable>
+    <q-item clickable :to="`/page/${page.id}`">
       <q-item-section side>
         <q-icon name="mdi-shopping" />
       </q-item-section>
