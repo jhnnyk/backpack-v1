@@ -33,19 +33,7 @@ export const useStoreTodos = defineStore('todos', () => {
     },
   ])
 
-  const pages = ref([
-    {
-      id: 'pageId1',
-      name: 'Errands',
-    },
-    {
-      id: 'pageId2',
-      name: 'Chores',
-    },
-  ])
-
   return {
     todos,
-    pages,
   }
 })
