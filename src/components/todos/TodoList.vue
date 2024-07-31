@@ -7,15 +7,19 @@
 <script setup>
 import { useStoreTodos } from 'src/stores/storeTodos'
 import ToDoItem from 'src/components/todos/ToDoItem.vue'
+import { ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
 
 const storeTodos = useStoreTodos()
+const route = useRoute()
 
-const props = defineProps({
-  currentPageId: {
-    type: String,
-    required: true,
+let pageTodos = ref([])
+
+watch(
+  route,
+  () => {
+    pageTodos.value = storeTodos.pageTodos(route.params.pageId)
   },
-})
-
-const pageTodos = storeTodos.pageTodos(props.currentPageId)
+  { immediate: true }
+)
 </script>
