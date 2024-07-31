@@ -1,17 +1,11 @@
 <template>
   <q-page class="flex">
     <q-list class="full-width">
-      <q-item>
-        <q-item-section side> chcek </q-item-section>
-        <q-item-section> go shopping </q-item-section>
-        <q-item-section side> edit </q-item-section>
-      </q-item>
+      <ToDoItem />
     </q-list>
   </q-page>
 </template>
 
 <script setup>
-defineOptions({
-  name: 'IndexPage',
-})
+import ToDoItem from 'src/components/todos/ToDoItem.vue'
 </script>
