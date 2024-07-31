@@ -13,7 +13,10 @@ export const useStorePages = defineStore('pages', () => {
     },
   ])
 
+  const currentPageId = ref('pageId1')
+
   return {
     pages,
+    currentPageId,
   }
 })
