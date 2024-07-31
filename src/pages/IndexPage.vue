@@ -1,7 +1,12 @@
 <template>
   <q-page>
-    <q-list v-for="todo in storeTodos.todos" :key="todo.id" class="full-width">
-      <ToDoItem :todo="todo" dense />
+    <q-list class="full-width q-pt-md">
+      <ToDoItem
+        v-for="todo in storeTodos.todos"
+        :key="todo.id"
+        :todo="todo"
+        dense
+      />
     </q-list>
   </q-page>
 </template>
