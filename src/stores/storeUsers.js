@@ -41,10 +41,15 @@ export const useStoreUsers = defineStore('users', () => {
       })
   }
 
+  const logoutUser = () => {
+    console.log('logout')
+  }
+
   return {
     currentUser,
     userIsLoading,
     getCurrentUser,
     registerUser,
+    logoutUser,
   }
 })

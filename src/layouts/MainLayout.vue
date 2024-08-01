@@ -24,6 +24,7 @@
         <div v-else-if="storeUsers.userIsLoading">loading...</div>
         <div v-else>
           {{ storeUsers.currentUser.displayName }}
+          <q-btn @click="storeUsers.logoutUser">Logout</q-btn>
         </div>
       </q-toolbar>
     </q-header>
@@ -40,7 +41,10 @@
     </q-drawer>
 
     <q-page-container>
-      <router-view :user="storeUsers.currentUser" />
+      <router-view
+        :user="storeUsers.currentUser"
+        :userIsLoading="storeUsers.userIsLoading"
+      />
     </q-page-container>
   </q-layout>
 </template>
