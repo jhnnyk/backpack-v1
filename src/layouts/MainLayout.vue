@@ -16,7 +16,11 @@
           Backpack
         </q-toolbar-title>
 
-        <div>Login or Register</div>
+        <div>
+          <q-btn to="/login" padding="xs" flat no-caps>Login</q-btn>
+          or
+          <q-btn to="/signup" padding="xs" flat no-caps>Sign Up</q-btn>
+        </div>
       </q-toolbar>
     </q-header>
 
