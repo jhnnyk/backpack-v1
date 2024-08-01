@@ -16,10 +16,14 @@
           Backpack
         </q-toolbar-title>
 
-        <div>
+        <div v-if="!storeUsers.currentUser">
           <q-btn to="/login" padding="xs" flat no-caps>Login</q-btn>
           or
           <q-btn to="/signup" padding="xs" flat no-caps>Sign Up</q-btn>
+        </div>
+        <div v-else-if="storeUsers.userIsLoading">loading...</div>
+        <div v-else>
+          {{ storeUsers.currentUser.displayName }}
         </div>
       </q-toolbar>
     </q-header>
@@ -44,11 +48,18 @@
 <script setup>
 import CreatePageButton from 'src/components/user-pages/CreatePageButton.vue'
 import PagesList from 'src/components/user-pages/PagesList.vue'
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
+import { useStoreUsers } from 'src/stores/storeUsers'
+
+const storeUsers = useStoreUsers()
 
 const leftDrawerOpen = ref(false)
 
 function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value
 }
+
+onMounted(() => {
+  storeUsers.getCurrentUser()
+})
 </script>
