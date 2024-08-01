@@ -16,7 +16,7 @@
           Backpack
         </q-toolbar-title>
 
-        <div>Login</div>
+        <div>Login or Register</div>
       </q-toolbar>
     </q-header>
 
