@@ -3,6 +3,7 @@ import { auth } from 'src/boot/firebase'
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
+  signOut,
   updateProfile,
 } from 'firebase/auth'
 import { ref } from 'vue'
@@ -42,7 +43,7 @@ export const useStoreUsers = defineStore('users', () => {
   }
 
   const logoutUser = () => {
-    console.log('logout')
+    signOut(auth)
   }
 
   return {
