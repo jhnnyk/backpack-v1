@@ -42,7 +42,9 @@
 
 <script setup>
 import { reactive } from 'vue'
+import { useStoreUsers } from 'src/stores/storeUsers'
 
+const storeUsers = useStoreUsers()
 const props = defineProps({ formAction: String })
 
 const formData = reactive({
@@ -53,9 +55,9 @@ const formData = reactive({
 
 const submitForm = () => {
   if (props.formAction == 'login') {
-    console.log('login!')
+    console.log('login!', formData)
   } else {
-    console.log('sign up!')
+    storeUsers.registerUser(formData)
   }
 }
 </script>
