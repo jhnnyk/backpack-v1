@@ -40,7 +40,7 @@
     </q-drawer>
 
     <q-page-container>
-      <router-view />
+      <router-view :user="storeUsers.currentUser" />
     </q-page-container>
   </q-layout>
 </template>
