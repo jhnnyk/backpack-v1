@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { auth } from 'src/boot/firebase'
-import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 
 export const useStoreUsers = defineStore('users', () => {
   const registerUser = (formData) => {
@@ -8,6 +8,9 @@ export const useStoreUsers = defineStore('users', () => {
       .then((userCredential) => {
         // Signed up
         const user = userCredential.user
+        updateProfile(auth.currentUser, {
+          displayName: formData.name,
+        })
         console.log(user)
       })
       .catch((error) => {
