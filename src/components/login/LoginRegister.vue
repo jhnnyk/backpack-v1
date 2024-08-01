@@ -55,7 +55,7 @@ const formData = reactive({
 
 const submitForm = () => {
   if (props.formAction == 'login') {
-    console.log('login!', formData)
+    storeUsers.loginUser(formData)
   } else {
     storeUsers.registerUser(formData)
   }
