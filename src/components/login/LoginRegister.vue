@@ -30,7 +30,9 @@
     />
     <div class="row">
       <q-space />
+      <q-btn v-if="storeUsers.userIsLoading" disabled>Loading...</q-btn>
       <q-btn
+        v-else
         color="primary"
         :label="formAction == 'login' ? 'Login' : 'Sign Up'"
         type="submit"
