@@ -12,6 +12,7 @@ import { ref } from 'vue'
 export const useStoreUsers = defineStore('users', () => {
   const currentUser = ref(null)
   const userIsLoading = ref(false)
+  const authError = ref('')
 
   const getCurrentUser = () => {
     userIsLoading.value = true
@@ -34,9 +35,7 @@ export const useStoreUsers = defineStore('users', () => {
         userIsLoading.value = false
       })
       .catch((error) => {
-        const errorCode = error.code
-        const errorMessage = error.message
-        console.log(errorCode, errorMessage)
+        formatErrorMessage(error)
         userIsLoading.value = false
       })
   }
@@ -52,9 +51,7 @@ export const useStoreUsers = defineStore('users', () => {
         userIsLoading.value = false
       })
       .catch((error) => {
-        const errorCode = error.code
-        const errorMessage = error.message
-        console.log(errorCode, errorMessage)
+        formatErrorMessage(error)
         userIsLoading.value = false
       })
   }
@@ -63,7 +60,30 @@ export const useStoreUsers = defineStore('users', () => {
     signOut(auth)
   }
 
+  const formatErrorMessage = (error) => {
+    switch (error.code) {
+      case 'auth/email-already-in-use':
+        authError.value =
+          'There is already an account using that email. Please check the email address and try again or login instead.'
+        break
+      case 'auth/weak-password':
+        authError.value = 'Password needs to be at least 6 characters long.'
+        break
+      case 'auth/missing-password':
+        authError.value = 'Please enter your password.'
+        break
+      case 'auth/invalid-credential':
+        authError.value =
+          'Email address or Password is incorrect. Please try again or Sign Up instead.'
+        break
+      default:
+        authError.value = error.code + ' | ' + error.message
+        break
+    }
+  }
+
   return {
+    authError,
     currentUser,
     userIsLoading,
     getCurrentUser,

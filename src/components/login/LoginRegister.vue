@@ -28,6 +28,9 @@
       label="Password"
       type="password"
     />
+    <div v-if="storeUsers.authError" class="text-negative text-center q-mb-sm">
+      {{ storeUsers.authError }}
+    </div>
     <div class="row">
       <q-space />
       <q-btn v-if="storeUsers.userIsLoading" disabled>Loading...</q-btn>
