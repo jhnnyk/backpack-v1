@@ -8,8 +8,10 @@ import {
   updateProfile,
 } from 'firebase/auth'
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 
 export const useStoreUsers = defineStore('users', () => {
+  const router = useRouter()
   const currentUser = ref(null)
   const userIsLoading = ref(false)
   const authError = ref('')
@@ -20,6 +22,7 @@ export const useStoreUsers = defineStore('users', () => {
       if (user) {
         currentUser.value = user
         userIsLoading.value = false
+        router.push('/')
       } else {
         currentUser.value = null
         userIsLoading.value = false
