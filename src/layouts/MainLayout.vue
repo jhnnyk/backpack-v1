@@ -23,6 +23,7 @@
         </div>
         <div v-else-if="storeUsers.userIsLoading">loading...</div>
         <div v-else>
+          <q-icon name="mdi-account-circle" />
           {{ storeUsers.currentUser.displayName }}
           <q-btn @click="storeUsers.logoutUser">Logout</q-btn>
         </div>
