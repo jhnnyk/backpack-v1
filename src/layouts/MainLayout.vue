@@ -64,7 +64,8 @@ function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value
 }
 
-onMounted(() => {
+onMounted(async () => {
   storeUsers.getCurrentUser()
+  console.log(storeUsers.currentUser)
 })
 </script>

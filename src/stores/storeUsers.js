@@ -22,7 +22,6 @@ export const useStoreUsers = defineStore('users', () => {
       if (user) {
         currentUser.value = user
         userIsLoading.value = false
-        router.push('/')
       } else {
         currentUser.value = null
         userIsLoading.value = false
@@ -36,6 +35,7 @@ export const useStoreUsers = defineStore('users', () => {
       .then((userCredential) => {
         // Signed in
         userIsLoading.value = false
+        router.push('/')
       })
       .catch((error) => {
         formatErrorMessage(error)
@@ -52,6 +52,7 @@ export const useStoreUsers = defineStore('users', () => {
           displayName: formData.name,
         })
         userIsLoading.value = false
+        router.push('/')
       })
       .catch((error) => {
         formatErrorMessage(error)
