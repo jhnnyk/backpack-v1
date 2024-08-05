@@ -26,14 +26,16 @@
 <script setup>
 import { ref } from 'vue'
 import { useStoreTodos } from 'src/stores/storeTodos'
+import { useStorePages } from 'src/stores/storePages'
 
 const storeTodos = useStoreTodos()
+const storePages = useStorePages()
 
 const newTodo = ref('')
 
 const addNewTodo = () => {
   storeTodos.addNewTodo({
-    pageId: 'thisone2',
+    pageId: storePages.currentPageId,
     name: newTodo.value,
     description: 'lorem ipsum',
     owner: 'me',
