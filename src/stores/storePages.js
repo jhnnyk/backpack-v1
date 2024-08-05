@@ -1,7 +1,10 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
 
 export const useStorePages = defineStore('pages', () => {
+  const route = useRoute()
+
   const pages = ref([
     {
       id: 'pageId1',
@@ -13,7 +16,11 @@ export const useStorePages = defineStore('pages', () => {
     },
   ])
 
-  const currentPageId = ref('pageId1')
+  const currentPageId = ref('')
+
+  watch(route, () => (currentPageId.value = route.params.pageId), {
+    immediate: true,
+  })
 
   return {
     pages,
