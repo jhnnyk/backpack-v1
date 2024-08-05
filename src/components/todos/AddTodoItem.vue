@@ -27,9 +27,11 @@
 import { ref } from 'vue'
 import { useStoreTodos } from 'src/stores/storeTodos'
 import { useStorePages } from 'src/stores/storePages'
+import { useStoreUsers } from 'src/stores/storeUsers'
 
 const storeTodos = useStoreTodos()
 const storePages = useStorePages()
+const storeUsers = useStoreUsers()
 
 const newTodo = ref('')
 
@@ -38,7 +40,7 @@ const addNewTodo = () => {
     pageId: storePages.currentPageId,
     name: newTodo.value,
     description: 'lorem ipsum',
-    owner: 'me',
+    owner: storeUsers.currentUser.uid,
     completed: false,
   })
 }
