@@ -3,6 +3,7 @@
     <div v-if="user">
       <p class="q-ma-md">Hello {{ user.displayName }}!</p>
       <TodoList />
+      <AddTodoItem />
     </div>
     <div v-else-if="userIsLoading" class="text-center q-pa-lg">
       ... loading ...
@@ -14,6 +15,7 @@
 </template>
 
 <script setup>
+import AddTodoItem from 'src/components/todos/AddTodoItem.vue'
 import TodoList from 'src/components/todos/TodoList.vue'
 
 const props = defineProps({

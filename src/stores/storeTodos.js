@@ -35,12 +35,10 @@ export const useStoreTodos = defineStore('todos', () => {
   ])
 
   // getters
-  // const pageTodos = computed(() => {
-  //   return (pageId) => todos.value.filter((todo) => todo.pageId == pageId)
-  // })
   const pageTodos = (pageId) => {
     return todos.value.filter((todo) => todo.pageId == pageId)
   }
+
   return {
     todos,
     pageTodos,
