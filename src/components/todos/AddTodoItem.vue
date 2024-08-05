@@ -1,5 +1,5 @@
 <template>
-  <q-form class="row q-mt-lg items-center">
+  <q-form @submit="addNewTodo" class="row q-mt-lg items-center">
     <div class="col">
       <q-input
         v-model="newTodo"
@@ -25,6 +25,19 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useStoreTodos } from 'src/stores/storeTodos'
+
+const storeTodos = useStoreTodos()
 
 const newTodo = ref('')
+
+const addNewTodo = () => {
+  storeTodos.addNewTodo({
+    pageId: 'thisone2',
+    name: newTodo.value,
+    description: 'lorem ipsum',
+    owner: 'me',
+    completed: false,
+  })
+}
 </script>

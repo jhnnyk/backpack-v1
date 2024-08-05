@@ -1,5 +1,7 @@
 import { defineStore } from 'pinia'
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
+import { db } from 'src/boot/firebase'
+import { collection, addDoc } from 'firebase/firestore'
 
 export const useStoreTodos = defineStore('todos', () => {
   // state
@@ -34,6 +36,12 @@ export const useStoreTodos = defineStore('todos', () => {
     },
   ])
 
+  // actions
+  const addNewTodo = async (newTodo) => {
+    const docRef = await addDoc(collection(db, 'todos'), newTodo)
+    console.log('Document written with ID: ', docRef.id)
+  }
+
   // getters
   const pageTodos = (pageId) => {
     return todos.value.filter((todo) => todo.pageId == pageId)
@@ -41,6 +49,7 @@ export const useStoreTodos = defineStore('todos', () => {
 
   return {
     todos,
+    addNewTodo,
     pageTodos,
   }
 })
