@@ -3,7 +3,12 @@
 </template>
 
 <script setup>
-defineOptions({
-  name: 'App',
+import { onMounted } from 'vue'
+import { useStoreUsers } from 'src/stores/storeUsers'
+
+const storeUsers = useStoreUsers()
+
+onMounted(() => {
+  storeUsers.getCurrentUser()
 })
 </script>

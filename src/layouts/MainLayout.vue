@@ -45,9 +45,9 @@
 </template>
 
 <script setup>
-import PagesList from 'src/components/user-pages/PagesList.vue'
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
 import { useStoreUsers } from 'src/stores/storeUsers'
+import PagesList from 'src/components/user-pages/PagesList.vue'
 import PagesListHeader from 'src/components/user-pages/PagesListHeader.vue'
 
 const storeUsers = useStoreUsers()
@@ -57,9 +57,4 @@ const leftDrawerOpen = ref(false)
 function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value
 }
-
-onMounted(async () => {
-  storeUsers.getCurrentUser()
-  console.log(storeUsers.currentUser)
-})
 </script>
