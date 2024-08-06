@@ -42,6 +42,10 @@ export const useStoreTodos = defineStore('todos', () => {
     console.log('Document written with ID: ', docRef.id)
   }
 
+  const loadTodos = (userId) => {
+    console.log('trying to load todos for: ', userId)
+  }
+
   // getters
   const pageTodos = (pageId) => {
     return todos.value.filter((todo) => todo.pageId == pageId)
@@ -50,6 +54,7 @@ export const useStoreTodos = defineStore('todos', () => {
   return {
     todos,
     addNewTodo,
+    loadTodos,
     pageTodos,
   }
 })
