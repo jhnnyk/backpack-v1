@@ -18,14 +18,18 @@ export const useStoreUsers = defineStore('users', () => {
 
   const getCurrentUser = () => {
     userIsLoading.value = true
-    onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        currentUser.value = user
-        userIsLoading.value = false
-      } else {
-        currentUser.value = null
-        userIsLoading.value = false
-      }
+    return new Promise((resolve, reject) => {
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          currentUser.value = user
+          userIsLoading.value = false
+          resolve()
+        } else {
+          currentUser.value = null
+          userIsLoading.value = false
+          resolve('no user found')
+        }
+      })
     })
   }
 
