@@ -31,13 +31,7 @@
     </q-header>
 
     <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
-      <q-item class="bg-grey-3">
-        <q-item-section>Pages</q-item-section>
-        <q-item-section side>
-          <CreatePageButton icon="mdi-plus" size="sm" flat round />
-        </q-item-section>
-      </q-item>
-
+      <PagesListHeader />
       <PagesList />
     </q-drawer>
 
@@ -51,10 +45,10 @@
 </template>
 
 <script setup>
-import CreatePageButton from 'src/components/user-pages/CreatePageButton.vue'
 import PagesList from 'src/components/user-pages/PagesList.vue'
 import { onMounted, ref } from 'vue'
 import { useStoreUsers } from 'src/stores/storeUsers'
+import PagesListHeader from 'src/components/user-pages/PagesListHeader.vue'
 
 const storeUsers = useStoreUsers()
 
