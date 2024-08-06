@@ -16,7 +16,7 @@ const route = useRoute()
 let pageTodos = ref([])
 
 watch(
-  route,
+  [route, storeTodos.pageTodos],
   () => {
     pageTodos.value = storeTodos.pageTodos(route.params.pageId)
   },
