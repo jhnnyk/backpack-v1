@@ -15,18 +15,13 @@
 
     <q-slide-transition>
       <div v-show="showForm">
-        <q-form class="q-pa-sm">
-          <q-input placeholder="add new page" standout rounded dense>
-            <template v-slot:after>
-              <q-btn
-                round
-                color="primary"
-                icon="mdi-plus"
-                size="sm"
-                type="submit"
-              />
-            </template>
-          </q-input>
+        <q-form @submit="addNewPage" class="row q-gutter-sm q-pa-sm">
+          <div class="col-9">
+            <q-input placeholder="add new page" standout rounded dense />
+          </div>
+          <div class="col-1">
+            <q-btn color="primary" icon="mdi-plus" type="submit" round />
+          </div>
         </q-form>
       </div>
     </q-slide-transition>
@@ -37,4 +32,8 @@
 import { ref } from 'vue'
 
 const showForm = ref(false)
+
+const addNewPage = () => {
+  console.log('add page...')
+}
 </script>
