@@ -37,13 +37,18 @@
 <script setup>
 import { ref } from 'vue'
 import { useStorePages } from 'src/stores/storePages'
+import { useStoreUsers } from 'src/stores/storeUsers'
 
 const storePages = useStorePages()
+const storeUsers = useStoreUsers()
 
 const showForm = ref(false)
 const newPageName = ref('')
 
 const addNewPage = () => {
-  storePages.addPage(newPageName.value)
+  storePages.addPage({
+    name: newPageName.value,
+    owner: storeUsers.currentUser.uid,
+  })
 }
 </script>
