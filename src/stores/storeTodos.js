@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref, watchEffect } from 'vue'
-import { auth, db } from 'src/boot/firebase'
+import { db } from 'src/boot/firebase'
 import {
   collection,
   addDoc,

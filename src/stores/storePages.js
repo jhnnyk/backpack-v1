@@ -1,6 +1,8 @@
 import { defineStore } from 'pinia'
 import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
+import { db } from 'src/boot/firebase'
+import { addDoc, collection } from 'firebase/firestore'
 
 export const useStorePages = defineStore('pages', () => {
   const route = useRoute()
@@ -25,8 +27,9 @@ export const useStorePages = defineStore('pages', () => {
   })
 
   // actions
-  const addPage = () => {
-    console.log('add page...')
+  const addPage = async (pageName) => {
+    const docRef = await addDoc(collection(db, 'pages'), { name: pageName })
+    console.log('Document written with ID: ', docRef.id)
   }
 
   return {

@@ -17,7 +17,13 @@
       <div v-show="showForm">
         <q-form @submit="addNewPage" class="row q-gutter-sm q-pa-sm">
           <div class="col-9">
-            <q-input placeholder="add new page" standout rounded dense />
+            <q-input
+              v-model="newPageName"
+              placeholder="add new page"
+              standout
+              rounded
+              dense
+            />
           </div>
           <div class="col-1">
             <q-btn color="primary" icon="mdi-plus" type="submit" round />
@@ -30,10 +36,14 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useStorePages } from 'src/stores/storePages'
+
+const storePages = useStorePages()
 
 const showForm = ref(false)
+const newPageName = ref('')
 
 const addNewPage = () => {
-  console.log('add page...')
+  storePages.addPage(newPageName.value)
 }
 </script>
