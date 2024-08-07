@@ -29,7 +29,6 @@ const storeUsers = useStoreUsers()
 const newTodo = ref('')
 
 const addNewTodo = () => {
-  console.log('submitting...')
   storeTodos.addNewTodo({
     pageId: storePages.currentPageId,
     name: newTodo.value,
