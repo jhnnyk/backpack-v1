@@ -1,17 +1,18 @@
 <template>
-  <q-form @submit="addNewTodo" class="q-mt-lg">
-    <q-input
-      v-model="newTodo"
-      class="q-mx-lg"
-      placeholder="new todo here"
-      rounded
-      standout
-      dense
-    >
-      <template v-slot:after>
-        <q-btn color="primary" icon="mdi-plus" type="submit" round />
-      </template>
-    </q-input>
+  <q-form @submit="addNewTodo" class="row q-mt-lg">
+    <div class="col-10">
+      <q-input
+        v-model="newTodo"
+        class="q-mx-lg"
+        placeholder="new todo here"
+        rounded
+        standout
+        dense
+      />
+    </div>
+    <div class="col-1">
+      <q-btn type="submit" color="primary" icon="mdi-plus" size="md" round />
+    </div>
   </q-form>
 </template>
 
@@ -28,6 +29,7 @@ const storeUsers = useStoreUsers()
 const newTodo = ref('')
 
 const addNewTodo = () => {
+  console.log('submitting...')
   storeTodos.addNewTodo({
     pageId: storePages.currentPageId,
     name: newTodo.value,
