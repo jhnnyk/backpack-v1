@@ -14,18 +14,10 @@ export const useStorePages = defineStore('pages', () => {
   const route = useRoute()
 
   // state
-  const pages = ref([
-    // {
-    //   id: 'pageId1',
-    //   name: 'Errands',
-    // },
-    // {
-    //   id: 'pageId2',
-    //   name: 'Chores',
-    // },
-  ])
+  const pages = ref([])
   const error = ref(null)
   const currentPageId = ref('')
+  const pagesAreLoading = ref(false)
 
   // actions
   const addPage = async (newPage) => {
@@ -66,7 +58,9 @@ export const useStorePages = defineStore('pages', () => {
 
   return {
     pages,
+    error,
     currentPageId,
+    pagesAreLoading,
     addPage,
     loadPages,
   }
