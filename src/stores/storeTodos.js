@@ -6,6 +6,7 @@ import {
   addDoc,
   doc,
   onSnapshot,
+  orderBy,
   query,
   updateDoc,
   where,
@@ -32,7 +33,11 @@ export const useStoreTodos = defineStore('todos', () => {
 
   const loadTodos = (userId) => {
     let todoCollectionRef = collection(db, 'todos')
-    const q = query(todoCollectionRef, where('owner', '==', userId))
+    const q = query(
+      todoCollectionRef,
+      where('owner', '==', userId),
+      orderBy('sort')
+    )
 
     const unsubscribe = onSnapshot(
       q,
