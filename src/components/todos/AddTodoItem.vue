@@ -42,6 +42,7 @@ const addNewTodo = async () => {
     description: 'lorem ipsum',
     owner: storeUsers.currentUser.uid,
     completed: false,
+    sort: 0,
   })
 
   // if adding todo was successful reset the form
