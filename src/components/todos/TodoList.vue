@@ -1,5 +1,5 @@
 <template>
-  <h3 class="text-center">title here</h3>
+  <h3 class="text-center" v-if="pageName">{{ pageName.name }}</h3>
   <q-list class="full-width q-pt-md">
     <Sortable
       @end="onSortEnd"
@@ -18,19 +18,30 @@
 <script setup>
 import { Sortable } from 'sortablejs-vue3'
 import { useStoreTodos } from 'src/stores/storeTodos'
+import { useStorePages } from 'src/stores/storePages'
 import ToDoItem from 'src/components/todos/ToDoItem.vue'
 import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 
 const storeTodos = useStoreTodos()
+const storePages = useStorePages()
 const route = useRoute()
 
 let pageTodos = ref([])
+const pageName = ref('')
 
 watch(
   [route, storeTodos.pageTodos],
   () => {
     pageTodos.value = storeTodos.pageTodos(route.params.pageId)
+  },
+  { immediate: true }
+)
+
+watch(
+  [route, storePages.pageName],
+  () => {
+    pageName.value = storePages.pageName(route.params.pageId)
   },
   { immediate: true }
 )
