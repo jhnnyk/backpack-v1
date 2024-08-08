@@ -3,7 +3,9 @@
     <q-item-section side>
       <q-checkbox v-model="completed" />
     </q-item-section>
-    <q-item-section class="text-grey-9">{{ todo.name }}</q-item-section>
+    <q-item-section class="text-grey-9"
+      >{{ todo.name }} - {{ todo.sort }}</q-item-section
+    >
 
     <q-item-section v-if="storeTodos.options.sort" side>
       <q-icon class="handle" name="mdi-reorder-horizontal" color="primary" />

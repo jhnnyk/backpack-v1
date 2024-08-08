@@ -4,8 +4,10 @@ import { db } from 'src/boot/firebase'
 import {
   collection,
   addDoc,
-  query,
+  doc,
   onSnapshot,
+  query,
+  updateDoc,
   where,
 } from 'firebase/firestore'
 
@@ -54,6 +56,11 @@ export const useStoreTodos = defineStore('todos', () => {
     })
   }
 
+  const updateTodo = async (todoId, updates) => {
+    const todoRef = doc(db, 'todos', todoId)
+    await updateDoc(todoRef, updates)
+  }
+
   // getters
   const pageTodos = (pageId) => {
     return todos.value.filter((todo) => todo.pageId == pageId)
@@ -66,6 +73,7 @@ export const useStoreTodos = defineStore('todos', () => {
     options,
     addNewTodo,
     loadTodos,
+    updateTodo,
     pageTodos,
   }
 })

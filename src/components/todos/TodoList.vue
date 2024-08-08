@@ -39,8 +39,8 @@ const onSortEnd = (evt) => {
   pageTodos.value.splice(evt.oldIndex, 1)
   pageTodos.value.splice(evt.newIndex, 0, movedEntry)
 
-  pageTodos.value.forEach((todo, index) => {
-    console.log(todo.id, todo.name, index)
+  pageTodos.value.forEach(async (todo, index) => {
+    await storeTodos.updateTodo(todo.id, { sort: index })
   })
 }
 </script>
