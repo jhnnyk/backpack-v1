@@ -17,8 +17,12 @@ export const useStoreTodos = defineStore('todos', () => {
 
   // actions
   const addNewTodo = async (newTodo) => {
-    const docRef = await addDoc(collection(db, 'todos'), newTodo)
-    console.log('Document written with ID: ', docRef.id)
+    error.value = null
+    try {
+      await addDoc(collection(db, 'todos'), newTodo)
+    } catch (err) {
+      error.value = err.message
+    }
   }
 
   const loadTodos = (userId) => {

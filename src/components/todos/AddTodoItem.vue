@@ -3,13 +3,20 @@
     <div class="col-10">
       <q-input
         v-model="newTodo"
+        :error="!!storeTodos.error"
         class="q-mx-lg"
         placeholder="new todo here"
+        bottom-slots
         rounded
         standout
         dense
-      />
+      >
+        <template v-slot:error>
+          {{ storeTodos.error }}
+        </template>
+      </q-input>
     </div>
+
     <div class="col-1">
       <q-btn type="submit" color="primary" icon="mdi-plus" size="md" round />
     </div>
@@ -28,13 +35,18 @@ const storeUsers = useStoreUsers()
 
 const newTodo = ref('')
 
-const addNewTodo = () => {
-  storeTodos.addNewTodo({
+const addNewTodo = async () => {
+  await storeTodos.addNewTodo({
     pageId: storePages.currentPageId,
     name: newTodo.value,
     description: 'lorem ipsum',
     owner: storeUsers.currentUser.uid,
     completed: false,
   })
+
+  // if adding todo was successful reset the form
+  if (!storeTodos.error) {
+    newTodo.value = ''
+  }
 }
 </script>
