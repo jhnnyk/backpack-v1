@@ -1,7 +1,7 @@
 <template>
   <q-list class="full-width q-pt-md">
     <Sortable
-      @end="storeTodos.sortEnd"
+      @end="onSortEnd"
       :list="pageTodos"
       :options="{ handle: '.handle' }"
       item-key="id"
@@ -33,4 +33,14 @@ watch(
   },
   { immediate: true }
 )
+
+const onSortEnd = (evt) => {
+  const movedEntry = pageTodos.value[evt.oldIndex]
+  pageTodos.value.splice(evt.oldIndex, 1)
+  pageTodos.value.splice(evt.newIndex, 0, movedEntry)
+
+  pageTodos.value.forEach((todo, index) => {
+    console.log(todo.id, todo.name, index)
+  })
+}
 </script>
