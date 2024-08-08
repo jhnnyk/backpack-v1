@@ -54,6 +54,12 @@ export const useStoreTodos = defineStore('todos', () => {
     })
   }
 
+  const sortEnd = ({ oldIndex, newIndex }) => {
+    const movedEntry = todos.value[oldIndex]
+    todos.value.splice(oldIndex, 1)
+    todos.value.splice(newIndex, 0, movedEntry)
+  }
+
   // getters
   const pageTodos = (pageId) => {
     return todos.value.filter((todo) => todo.pageId == pageId)
@@ -67,5 +73,6 @@ export const useStoreTodos = defineStore('todos', () => {
     addNewTodo,
     loadTodos,
     pageTodos,
+    sortEnd,
   }
 })
