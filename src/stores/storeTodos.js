@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref, watchEffect } from 'vue'
+import { reactive, ref, watchEffect } from 'vue'
 import { db } from 'src/boot/firebase'
 import {
   collection,
@@ -14,6 +14,9 @@ export const useStoreTodos = defineStore('todos', () => {
   const todos = ref([])
   const error = ref(null)
   const todosAreLoading = ref(false)
+  const options = reactive({
+    sort: true,
+  })
 
   // actions
   const addNewTodo = async (newTodo) => {
@@ -60,6 +63,7 @@ export const useStoreTodos = defineStore('todos', () => {
     todos,
     error,
     todosAreLoading,
+    options,
     addNewTodo,
     loadTodos,
     pageTodos,
