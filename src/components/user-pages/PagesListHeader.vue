@@ -54,6 +54,7 @@ const addNewPage = () => {
   storePages.addPage({
     name: newPageName.value,
     owner: storeUsers.currentUser.uid,
+    pageSort: 0,
   })
 
   // if adding page was successful, reset the form

@@ -6,6 +6,7 @@ import {
   addDoc,
   collection,
   onSnapshot,
+  orderBy,
   query,
   where,
 } from 'firebase/firestore'
@@ -32,7 +33,11 @@ export const useStorePages = defineStore('pages', () => {
   const loadPages = (userId) => {
     pagesAreLoading.value = true
     let pagesCollectionRef = collection(db, 'pages')
-    const q = query(pagesCollectionRef, where('owner', '==', userId))
+    const q = query(
+      pagesCollectionRef,
+      where('owner', '==', userId),
+      orderBy('pageSort')
+    )
 
     const unsubscribe = onSnapshot(
       q,
