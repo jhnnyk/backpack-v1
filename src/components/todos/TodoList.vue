@@ -1,5 +1,18 @@
 <template>
   <h3 class="text-center" v-if="pageName">{{ pageName.name }}</h3>
+  <div class="row">
+    <q-space />
+    <q-btn
+      @click="storeTodos.options.sort = !storeTodos.options.sort"
+      :label="!storeTodos.options.sort ? 'Sort' : 'Done'"
+      class="q-px-sm q-mr-md"
+      color="primary"
+      rounded
+      no-caps
+      dense
+    />
+  </div>
+
   <q-list class="full-width q-pt-md">
     <Sortable
       @end="onSortEnd"
