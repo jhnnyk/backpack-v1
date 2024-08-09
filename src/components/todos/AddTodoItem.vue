@@ -25,10 +25,12 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useRoute } from 'vue-router'
 import { useStoreTodos } from 'src/stores/storeTodos'
 import { useStorePages } from 'src/stores/storePages'
 import { useStoreUsers } from 'src/stores/storeUsers'
 
+const route = useRoute()
 const storeTodos = useStoreTodos()
 const storePages = useStorePages()
 const storeUsers = useStoreUsers()
@@ -42,7 +44,7 @@ const addNewTodo = async () => {
     description: 'lorem ipsum',
     owner: storeUsers.currentUser.uid,
     completed: false,
-    sort: 0,
+    sort: storeTodos.pageTodos(route.params.pageId).length,
   })
 
   // if adding todo was successful reset the form
