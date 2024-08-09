@@ -19,7 +19,7 @@ export const useStoreTodos = defineStore('todos', () => {
   const error = ref(null)
   const todosAreLoading = ref(false)
   const options = reactive({
-    showOptions: true,
+    showOptions: false,
   })
 
   // actions
