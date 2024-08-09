@@ -4,9 +4,10 @@
     <h3 class="q-ma-none">Backpack</h3>
     <div v-if="user">
       <p class="q-ma-md">
-        Hello {{ user.displayName }}! Go to one of your pages:
+        Hello {{ user.displayName }}! Go to one of your pages or add one below:
       </p>
       <PagesList />
+      <AddPage />
     </div>
 
     <p v-else>
@@ -17,6 +18,7 @@
 </template>
 
 <script setup>
+import AddPage from 'src/components/user-pages/AddPage.vue'
 import PagesList from 'src/components/user-pages/PagesList.vue'
 
 const props = defineProps({
