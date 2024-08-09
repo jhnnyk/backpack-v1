@@ -74,11 +74,6 @@ export const useStorePages = defineStore('pages', () => {
     { immediate: true }
   )
 
-  // getters
-  const pageName = (pageId) => {
-    return pages.value.filter((pages) => pages.id == pageId)[0]
-  }
-
   return {
     pages,
     error,
@@ -86,6 +81,5 @@ export const useStorePages = defineStore('pages', () => {
     pagesAreLoading,
     addPage,
     loadPages,
-    pageName,
   }
 })

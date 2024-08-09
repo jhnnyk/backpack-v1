@@ -1,5 +1,7 @@
 <template>
-  <h3 class="text-center" v-if="pageName">{{ pageName.name }}</h3>
+  <h3 class="text-center" v-if="storePages.currentPage">
+    {{ storePages.currentPage.name }}
+  </h3>
   <div v-if="storeTodos.todosAreLoading" class="text-center">
     <LoadingSpinner />
   </div>
@@ -53,20 +55,11 @@ const storePages = useStorePages()
 const route = useRoute()
 
 let pageTodos = ref([])
-const pageName = ref('')
 
 watch(
   [route, storeTodos.pageTodos],
   () => {
     pageTodos.value = storeTodos.pageTodos(route.params.pageId)
-  },
-  { immediate: true }
-)
-
-watch(
-  [route, storePages.pageName],
-  () => {
-    pageName.value = storePages.pageName(route.params.pageId)
   },
   { immediate: true }
 )
