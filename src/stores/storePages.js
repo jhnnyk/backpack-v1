@@ -30,6 +30,7 @@ export const useStorePages = defineStore('pages', () => {
   }
 
   const loadPages = (userId) => {
+    pagesAreLoading.value = true
     let pagesCollectionRef = collection(db, 'pages')
     const q = query(pagesCollectionRef, where('owner', '==', userId))
 
@@ -41,11 +42,13 @@ export const useStorePages = defineStore('pages', () => {
           results.push({ ...doc.data(), id: doc.id })
         })
         pages.value = results
+        pagesAreLoading.value = false
       },
       (err) => {
         console.log(err.message)
         pages.value = null
         error.value = 'could not fetch pages'
+        pagesAreLoading.value = false
       }
     )
 
