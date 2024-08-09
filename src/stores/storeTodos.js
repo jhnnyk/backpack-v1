@@ -32,6 +32,7 @@ export const useStoreTodos = defineStore('todos', () => {
   }
 
   const loadTodos = (userId) => {
+    todosAreLoading.value = true
     let todoCollectionRef = collection(db, 'todos')
     const q = query(
       todoCollectionRef,
@@ -47,11 +48,13 @@ export const useStoreTodos = defineStore('todos', () => {
           results.push({ ...doc.data(), id: doc.id })
         })
         todos.value = results
+        todosAreLoading.value = false
       },
       (err) => {
         console.log(err.message)
         todos.value = null
         error.value = 'could not fetch todos'
+        todosAreLoading.value = false
       }
     )
 

@@ -1,40 +1,50 @@
 <template>
   <h3 class="text-center" v-if="pageName">{{ pageName.name }}</h3>
-  <div class="row">
-    <q-space />
-    <q-btn
-      @click="storeTodos.options.sort = !storeTodos.options.sort"
-      :label="!storeTodos.options.sort ? 'Sort' : 'Done'"
-      class="q-px-sm q-mr-md"
-      color="primary"
-      rounded
-      no-caps
-      dense
-    />
+  <div v-if="storeTodos.todosAreLoading" class="text-center">
+    <LoadingSpinner />
   </div>
 
-  <q-list class="full-width q-pt-md">
-    <Sortable
-      @end="onSortEnd"
-      :list="pageTodos"
-      :options="{ handle: '.handle' }"
-      item-key="id"
-      tag="div"
-    >
-      <template #item="{ element, index }">
-        <ToDoItem :key="element.id" :todo="element" :index="index" dense />
-      </template>
-    </Sortable>
-  </q-list>
+  <div v-else>
+    <div class="row">
+      <q-space />
+      <q-btn
+        @click="storeTodos.options.sort = !storeTodos.options.sort"
+        :label="!storeTodos.options.sort ? 'Sort' : 'Done'"
+        class="q-px-sm q-mr-md"
+        color="primary"
+        rounded
+        no-caps
+        dense
+      />
+    </div>
+
+    <q-list class="full-width q-pt-md">
+      <Sortable
+        @end="onSortEnd"
+        :list="pageTodos"
+        :options="{ handle: '.handle' }"
+        item-key="id"
+        tag="div"
+      >
+        <template #item="{ element, index }">
+          <ToDoItem :key="element.id" :todo="element" :index="index" dense />
+        </template>
+      </Sortable>
+    </q-list>
+
+    <AddTodoItem />
+  </div>
 </template>
 
 <script setup>
 import { Sortable } from 'sortablejs-vue3'
+import { ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
 import { useStoreTodos } from 'src/stores/storeTodos'
 import { useStorePages } from 'src/stores/storePages'
 import ToDoItem from 'src/components/todos/ToDoItem.vue'
-import { ref, watch } from 'vue'
-import { useRoute } from 'vue-router'
+import LoadingSpinner from '../LoadingSpinner.vue'
+import AddTodoItem from 'src/components/todos/AddTodoItem.vue'
 
 const storeTodos = useStoreTodos()
 const storePages = useStorePages()
