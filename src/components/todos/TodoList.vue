@@ -8,11 +8,13 @@
     <div class="row">
       <q-space />
       <q-btn
-        @click="storeTodos.options.sort = !storeTodos.options.sort"
-        :label="!storeTodos.options.sort ? 'Sort' : 'Done'"
+        @click="
+          storeTodos.options.showOptions = !storeTodos.options.showOptions
+        "
+        :icon="!storeTodos.options.showOptions ? 'mdi-cog' : 'mdi-check'"
         class="q-px-sm q-mr-md"
         color="primary"
-        rounded
+        round
         no-caps
         dense
       />
