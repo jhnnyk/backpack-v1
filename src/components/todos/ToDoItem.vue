@@ -11,6 +11,14 @@
       <div>
         <q-btn icon="mdi-square-edit-outline" size="sm" flat round />
         <q-btn
+          @click="storeTodos.deleteTodo(todo.id)"
+          icon="mdi-delete"
+          color="negative"
+          size="sm"
+          flat
+          round
+        />
+        <q-btn
           icon="mdi-reorder-horizontal"
           class="handle"
           size="sm"

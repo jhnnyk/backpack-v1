@@ -4,6 +4,7 @@ import { db } from 'src/boot/firebase'
 import {
   collection,
   addDoc,
+  deleteDoc,
   doc,
   onSnapshot,
   orderBy,
@@ -69,6 +70,11 @@ export const useStoreTodos = defineStore('todos', () => {
     await updateDoc(todoRef, updates)
   }
 
+  const deleteTodo = async (todoId) => {
+    const todoRef = doc(db, 'todos', todoId)
+    await deleteDoc(todoRef)
+  }
+
   // getters
   const pageTodos = (pageId) => {
     return todos.value.filter((todo) => todo.pageId == pageId)
@@ -82,6 +88,7 @@ export const useStoreTodos = defineStore('todos', () => {
     addNewTodo,
     loadTodos,
     updateTodo,
+    deleteTodo,
     pageTodos,
   }
 })
