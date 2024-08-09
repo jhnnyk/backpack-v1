@@ -17,8 +17,8 @@ export const useStorePages = defineStore('pages', () => {
   // state
   const pages = ref([])
   const error = ref(null)
-  const currentPageId = ref('')
   const pagesAreLoading = ref(false)
+  const currentPage = ref({})
 
   // actions
   const addPage = async (newPage) => {
@@ -64,9 +64,15 @@ export const useStorePages = defineStore('pages', () => {
   }
 
   // helpers
-  watch(route, () => (currentPageId.value = route.params.pageId), {
-    immediate: true,
-  })
+  watch(
+    [route, () => pages.value],
+    () => {
+      currentPage.value = pages.value.find(
+        (page) => page.id === route.params.pageId
+      )
+    },
+    { immediate: true }
+  )
 
   // getters
   const pageName = (pageId) => {
@@ -76,7 +82,7 @@ export const useStorePages = defineStore('pages', () => {
   return {
     pages,
     error,
-    currentPageId,
+    currentPage,
     pagesAreLoading,
     addPage,
     loadPages,
