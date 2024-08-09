@@ -47,7 +47,7 @@ const addNewTodo = async () => {
     sort: storeTodos.pageTodos(route.params.pageId).length,
   })
 
-  // if adding todo was successful reset the form
+  // if adding todo was successful, reset the form
   if (!storeTodos.error) {
     newTodo.value = ''
   }

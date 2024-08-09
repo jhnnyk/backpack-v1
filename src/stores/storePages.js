@@ -21,8 +21,12 @@ export const useStorePages = defineStore('pages', () => {
 
   // actions
   const addPage = async (newPage) => {
-    const docRef = await addDoc(collection(db, 'pages'), newPage)
-    console.log('Document written with ID: ', docRef.id)
+    error.value = null
+    try {
+      await addDoc(collection(db, 'pages'), newPage)
+    } catch (err) {
+      error.value = err
+    }
   }
 
   const loadPages = (userId) => {

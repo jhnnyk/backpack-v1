@@ -19,11 +19,16 @@
           <div class="col-9">
             <q-input
               v-model="newPageName"
+              :error="!!storePages.error"
               placeholder="add new page"
               standout
               rounded
               dense
-            />
+            >
+              <template v-slot:error>
+                {{ storePages.error }}
+              </template>
+            </q-input>
           </div>
           <div class="col-1">
             <q-btn color="primary" icon="mdi-plus" type="submit" round />
@@ -50,5 +55,10 @@ const addNewPage = () => {
     name: newPageName.value,
     owner: storeUsers.currentUser.uid,
   })
+
+  // if adding page was successful, reset the form
+  if (!storePages.error) {
+    newPageName.value = ''
+  }
 }
 </script>
