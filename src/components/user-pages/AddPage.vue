@@ -33,6 +33,13 @@ const addNewPage = () => {
   storePages.addPage({
     name: newPageName.value,
     owner: storeUsers.currentUser.uid,
+    content: [
+      {
+        type: 'text',
+        title: 'Welcome to your new page',
+        description: 'Add / edit / delete this content to get started',
+      },
+    ],
     pageSort: 0,
   })
 
