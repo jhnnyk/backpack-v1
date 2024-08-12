@@ -11,6 +11,18 @@
           round
         />
       </q-item-section>
+      <q-item-section side>
+        <q-btn
+          @click="
+            storePages.options.showPageOptions =
+              !storePages.options.showPageOptions
+          "
+          :icon="!storePages.options.showPageOptions ? 'mdi-cog' : 'mdi-check'"
+          size="sm"
+          round
+          flat
+        />
+      </q-item-section>
     </q-item>
 
     <q-slide-transition>
@@ -23,7 +35,9 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useStorePages } from 'src/stores/storePages'
 import AddPage from './AddPage.vue'
 
+const storePages = useStorePages()
 const showForm = ref(false)
 </script>

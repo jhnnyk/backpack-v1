@@ -12,6 +12,15 @@
         <!-- <q-item-section side>{{
           storeTodos.pageTodos(page.id).length
         }}</q-item-section> -->
+        <q-item-section v-if="storePages.options.showPageOptions" side>
+          <q-btn
+            icon="mdi-reorder-horizontal"
+            class="page-handle"
+            size="sm"
+            flat
+            round
+          />
+        </q-item-section>
       </q-item>
     </q-list>
   </div>

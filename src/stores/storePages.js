@@ -24,6 +24,7 @@ export const useStorePages = defineStore('pages', () => {
   const currentPage = ref({})
   const options = reactive({
     showOptions: false,
+    showPageOptions: false,
   })
 
   // actions
@@ -80,7 +81,7 @@ export const useStorePages = defineStore('pages', () => {
     }
   }
 
-  const sortEnd = ({ oldIndex, newIndex }) => {
+  const sortItemsEnd = ({ oldIndex, newIndex }) => {
     const movedEntry = currentPage.value.content[oldIndex]
     currentPage.value.content.splice(oldIndex, 1)
     currentPage.value.content.splice(newIndex, 0, movedEntry)
@@ -131,7 +132,7 @@ export const useStorePages = defineStore('pages', () => {
     options,
     addPage,
     addNewItem,
-    sortEnd,
+    sortItemsEnd,
     loadPages,
     deleteContentItem,
   }
