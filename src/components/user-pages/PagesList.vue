@@ -66,8 +66,6 @@ const sortPages = (evt) => {
   storePages.pages.splice(evt.oldIndex, 1)
   storePages.pages.splice(evt.newIndex, 0, movedEntry)
 
-  storePages.pages.forEach(async (page, index) => {
-    await storePages.updatePage(page.id, { pageSort: index })
-  })
+  storePages.updatePageSort()
 }
 </script>
