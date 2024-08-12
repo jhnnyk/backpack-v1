@@ -77,6 +77,12 @@ export const useStorePages = defineStore('pages', () => {
     }
   }
 
+  const sortEnd = ({ oldIndex, newIndex }) => {
+    const movedEntry = currentPage.value.content[oldIndex]
+    currentPage.value.content.splice(oldIndex, 1)
+    currentPage.value.content.splice(newIndex, 0, movedEntry)
+  }
+
   // helpers
   watch(
     [route, () => pages.value],
@@ -96,6 +102,7 @@ export const useStorePages = defineStore('pages', () => {
     pagesAreLoading,
     addPage,
     addNewItem,
+    sortEnd,
     loadPages,
   }
 })

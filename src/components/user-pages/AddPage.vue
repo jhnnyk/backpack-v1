@@ -35,6 +35,7 @@ const addNewPage = () => {
     owner: storeUsers.currentUser.uid,
     content: [
       {
+        id: 'id1',
         type: 'text',
         title: 'Welcome to your new page',
         description: 'Add / edit / delete this content to get started',

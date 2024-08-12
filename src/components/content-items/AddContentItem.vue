@@ -25,6 +25,7 @@
 
 <script setup>
 import { ref } from 'vue'
+import { uid } from 'quasar'
 import { useStorePages } from 'src/stores/storePages'
 
 const storePages = useStorePages()
@@ -33,6 +34,7 @@ const newItem = ref('')
 
 const addNewItem = async () => {
   await storePages.addNewItem({
+    id: uid(),
     title: newItem.value,
     description: 'lorem ipsum',
     completed: false,

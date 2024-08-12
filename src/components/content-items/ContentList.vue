@@ -24,7 +24,7 @@
 
     <q-list v-if="storePages.currentPage" class="full-width q-pt-md">
       <Sortable
-        @end="onSortEnd"
+        @end="storePages.sortEnd"
         :list="storePages.currentPage.content"
         :options="{ handle: '.handle' }"
         item-key="id"
