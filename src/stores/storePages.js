@@ -110,6 +110,7 @@ export const useStorePages = defineStore('pages', () => {
   const deletePage = async (pageId) => {
     try {
       await deleteDoc(doc(db, 'pages', pageId))
+      await updatePageSort(pages.value)
     } catch (err) {
       error.value = err.message
     }
@@ -132,6 +133,12 @@ export const useStorePages = defineStore('pages', () => {
     )
   }
 
+  const updatePageSort = async () => {
+    pages.value.forEach(async (page, index) => {
+      await updatePage(page.id, { pageSort: index })
+    })
+  }
+
   return {
     pages,
     error,
@@ -144,6 +151,7 @@ export const useStorePages = defineStore('pages', () => {
     sortItemsEnd,
     loadPages,
     updatePage,
+    updatePageSort,
     deleteContentItem,
     deletePage,
   }

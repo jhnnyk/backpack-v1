@@ -31,7 +31,7 @@
               <div>
                 <q-btn icon="mdi-square-edit-outline" size="sm" flat round />
                 <q-btn
-                  @click="storePages.deletePage(storePages.currentPage.id)"
+                  @click="storePages.deletePage(element.id)"
                   icon="mdi-delete"
                   color="negative"
                   size="sm"
