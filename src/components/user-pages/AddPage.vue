@@ -42,7 +42,7 @@ const addNewPage = () => {
         completed: false,
       },
     ],
-    pageSort: 0,
+    pageSort: storePages.pages.length,
   })
 
   // if adding page was successful, reset the form
