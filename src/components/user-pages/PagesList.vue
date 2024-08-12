@@ -22,7 +22,7 @@
               <q-icon name="mdi-shopping" />
             </q-item-section>
             <q-item-section class="text-grey-9">
-              {{ element.name }} - {{ element.pageSort }}
+              {{ element.name }}
             </q-item-section>
             <!-- <q-item-section side>{{
               storeTodos.pageTodos(page.id).length
