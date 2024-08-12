@@ -3,7 +3,7 @@
     <div v-if="user">
       <p class="q-ma-md">Hello {{ user.displayName }}!</p>
       <ContentList />
-      <ActionButton class="float-right" />
+      <ActionButton class="fixed-bottom-right q-ma-lg" />
     </div>
     <div v-else-if="userIsLoading" class="text-center q-pa-lg">
       <LoadingSpinner />
