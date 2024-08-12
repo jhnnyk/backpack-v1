@@ -6,6 +6,7 @@ import {
   addDoc,
   collection,
   doc,
+  deleteDoc,
   onSnapshot,
   orderBy,
   query,
@@ -106,6 +107,14 @@ export const useStorePages = defineStore('pages', () => {
     updatePage(currentPage.value.id, { content: currentPage.value.content })
   }
 
+  const deletePage = async (pageId) => {
+    try {
+      await deleteDoc(doc(db, 'pages', pageId))
+    } catch (err) {
+      error.value = err.message
+    }
+  }
+
   // helpers
   watch(
     [route, () => pages.value],
@@ -136,5 +145,6 @@ export const useStorePages = defineStore('pages', () => {
     loadPages,
     updatePage,
     deleteContentItem,
+    deletePage,
   }
 })
