@@ -75,7 +75,7 @@ export const useStorePages = defineStore('pages', () => {
     await currentPage.value.content.push(newItem)
 
     try {
-      updatePage({ content: currentPage.value.content })
+      updatePage(currentPage.value.id, { content: currentPage.value.content })
     } catch (err) {
       addItemError.value = err.message
     }
@@ -86,12 +86,12 @@ export const useStorePages = defineStore('pages', () => {
     currentPage.value.content.splice(oldIndex, 1)
     currentPage.value.content.splice(newIndex, 0, movedEntry)
 
-    updatePage({ content: currentPage.value.content })
+    updatePage(currentPage.value.id, { content: currentPage.value.content })
   }
 
-  const updatePage = async (updates) => {
+  const updatePage = async (pageId, updates) => {
     error.value = null
-    const itemRef = doc(db, 'pages', currentPage.value.id)
+    const itemRef = doc(db, 'pages', pageId)
     try {
       await updateDoc(itemRef, updates)
     } catch (err) {
@@ -103,7 +103,7 @@ export const useStorePages = defineStore('pages', () => {
     const index = getContentItemIndex(contentItemId)
     currentPage.value.content.splice(index, 1)
 
-    updatePage({ content: currentPage.value.content })
+    updatePage(currentPage.value.id, { content: currentPage.value.content })
   }
 
   // helpers
@@ -134,6 +134,7 @@ export const useStorePages = defineStore('pages', () => {
     addNewItem,
     sortItemsEnd,
     loadPages,
+    updatePage,
     deleteContentItem,
   }
 })

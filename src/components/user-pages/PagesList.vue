@@ -3,32 +3,60 @@
     <LoadingSpinner />
   </div>
   <div v-else>
-    <q-list v-for="page in storePages.pages" :key="page.id">
-      <q-item clickable :to="`/page/${page.id}`">
-        <q-item-section side>
-          <q-icon name="mdi-shopping" />
-        </q-item-section>
-        <q-item-section class="text-grey-9">{{ page.name }}</q-item-section>
-        <!-- <q-item-section side>{{
-          storeTodos.pageTodos(page.id).length
-        }}</q-item-section> -->
-        <q-item-section v-if="storePages.options.showPageOptions" side>
-          <q-btn
-            icon="mdi-reorder-horizontal"
-            class="page-handle"
-            size="sm"
-            flat
-            round
-          />
-        </q-item-section>
-      </q-item>
+    <q-list>
+      <Sortable
+        @end="sortPages"
+        :list="storePages.pages"
+        :options="{ handle: '.page-handle' }"
+        item-key="id"
+        tag="div"
+      >
+        <template #item="{ element, index }">
+          <q-item
+            clickable
+            :to="`/page/${element.id}`"
+            :key="element.id"
+            :index="index"
+          >
+            <q-item-section side>
+              <q-icon name="mdi-shopping" />
+            </q-item-section>
+            <q-item-section class="text-grey-9">{{
+              element.name
+            }}</q-item-section>
+            <!-- <q-item-section side>{{
+              storeTodos.pageTodos(page.id).length
+            }}</q-item-section> -->
+            <q-item-section v-if="storePages.options.showPageOptions" side>
+              <q-btn
+                icon="mdi-reorder-horizontal"
+                class="page-handle"
+                size="sm"
+                flat
+                round
+              />
+            </q-item-section>
+          </q-item>
+        </template>
+      </Sortable>
     </q-list>
   </div>
 </template>
 
 <script setup>
+import { Sortable } from 'sortablejs-vue3'
 import { useStorePages } from 'src/stores/storePages'
 import LoadingSpinner from '../LoadingSpinner.vue'
 
 const storePages = useStorePages()
+
+const sortPages = (evt) => {
+  const movedEntry = storePages.pages[evt.oldIndex]
+  storePages.pages.splice(evt.oldIndex, 1)
+  storePages.pages.splice(evt.newIndex, 0, movedEntry)
+
+  storePages.pages.forEach(async (page, index) => {
+    await storePages.updatePage(page.id, { pageSort: index })
+  })
+}
 </script>
