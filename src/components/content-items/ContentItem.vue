@@ -11,7 +11,7 @@
       <div>
         <q-btn icon="mdi-square-edit-outline" size="sm" flat round />
         <q-btn
-          @click="storeTodos.deleteTodo(todo.id)"
+          @click="storePages.deleteContentItem(item.id)"
           icon="mdi-delete"
           color="negative"
           size="sm"
@@ -33,8 +33,10 @@
 <script setup>
 import { ref } from 'vue'
 import { useStoreTodos } from 'src/stores/storeTodos'
+import { useStorePages } from 'src/stores/storePages'
 
 const storeTodos = useStoreTodos()
+const storePages = useStorePages()
 const props = defineProps({
   item: {
     type: Object,

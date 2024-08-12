@@ -95,6 +95,13 @@ export const useStorePages = defineStore('pages', () => {
     }
   }
 
+  const deleteContentItem = (contentItemId) => {
+    const index = getContentItemIndex(contentItemId)
+    currentPage.value.content.splice(index, 1)
+
+    updatePage({ content: currentPage.value.content })
+  }
+
   // helpers
   watch(
     [route, () => pages.value],
@@ -106,6 +113,12 @@ export const useStorePages = defineStore('pages', () => {
     { immediate: true }
   )
 
+  const getContentItemIndex = (contentItemId) => {
+    return currentPage.value.content.findIndex(
+      (item) => item.id === contentItemId
+    )
+  }
+
   return {
     pages,
     error,
@@ -116,5 +129,6 @@ export const useStorePages = defineStore('pages', () => {
     addNewItem,
     sortEnd,
     loadPages,
+    deleteContentItem,
   }
 })
