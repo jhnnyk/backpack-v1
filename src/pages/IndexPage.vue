@@ -2,7 +2,7 @@
   <q-page>
     <div v-if="user">
       <p class="q-ma-md">Hello {{ user.displayName }}!</p>
-      <TodoList />
+      <ContentList />
     </div>
     <div v-else-if="userIsLoading" class="text-center q-pa-lg">
       <LoadingSpinner />
@@ -15,7 +15,7 @@
 
 <script setup>
 import LoadingSpinner from 'src/components/LoadingSpinner.vue'
-import TodoList from 'src/components/todos/TodoList.vue'
+import ContentList from 'src/components/content-items/ContentList.vue'
 
 const props = defineProps({
   user: { type: Object },
