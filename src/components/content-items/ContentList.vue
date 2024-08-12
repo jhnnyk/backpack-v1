@@ -11,9 +11,9 @@
       <q-space />
       <q-btn
         @click="
-          storeTodos.options.showOptions = !storeTodos.options.showOptions
+          storePages.options.showOptions = !storePages.options.showOptions
         "
-        :icon="!storeTodos.options.showOptions ? 'mdi-cog' : 'mdi-check'"
+        :icon="!storePages.options.showOptions ? 'mdi-cog' : 'mdi-check'"
         class="q-px-sm q-mr-md"
         color="primary"
         round
@@ -42,35 +42,10 @@
 
 <script setup>
 import { Sortable } from 'sortablejs-vue3'
-import { ref, watch } from 'vue'
-import { useRoute } from 'vue-router'
-import { useStoreTodos } from 'src/stores/storeTodos'
 import { useStorePages } from 'src/stores/storePages'
 import ContentItem from 'src/components/content-items/ContentItem.vue'
 import LoadingSpinner from '../LoadingSpinner.vue'
 import AddContentItem from 'src/components/content-items/AddContentItem.vue'
 
-const storeTodos = useStoreTodos()
 const storePages = useStorePages()
-const route = useRoute()
-
-let pageTodos = ref([])
-
-watch(
-  [route, storeTodos.pageTodos],
-  () => {
-    pageTodos.value = storeTodos.pageTodos(route.params.pageId)
-  },
-  { immediate: true }
-)
-
-const onSortEnd = (evt) => {
-  const movedEntry = pageTodos.value[evt.oldIndex]
-  pageTodos.value.splice(evt.oldIndex, 1)
-  pageTodos.value.splice(evt.newIndex, 0, movedEntry)
-
-  pageTodos.value.forEach(async (todo, index) => {
-    await storeTodos.updateTodo(todo.id, { sort: index })
-  })
-}
 </script>

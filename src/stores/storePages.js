@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref, watch, watchEffect } from 'vue'
+import { reactive, ref, watch, watchEffect } from 'vue'
 import { useRoute } from 'vue-router'
 import { db } from 'src/boot/firebase'
 import {
@@ -22,6 +22,9 @@ export const useStorePages = defineStore('pages', () => {
   const addItemError = ref(null)
   const pagesAreLoading = ref(false)
   const currentPage = ref({})
+  const options = reactive({
+    showOptions: false,
+  })
 
   // actions
   const addPage = async (newPage) => {
@@ -125,6 +128,7 @@ export const useStorePages = defineStore('pages', () => {
     addItemError,
     currentPage,
     pagesAreLoading,
+    options,
     addPage,
     addNewItem,
     sortEnd,

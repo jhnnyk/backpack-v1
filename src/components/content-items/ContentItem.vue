@@ -7,7 +7,7 @@
       <q-item-label> {{ item.title }}</q-item-label>
     </q-item-section>
 
-    <q-item-section v-if="storeTodos.options.showOptions" side top>
+    <q-item-section v-if="storePages.options.showOptions" side top>
       <div>
         <q-btn icon="mdi-square-edit-outline" size="sm" flat round />
         <q-btn
@@ -32,10 +32,8 @@
 
 <script setup>
 import { ref } from 'vue'
-import { useStoreTodos } from 'src/stores/storeTodos'
 import { useStorePages } from 'src/stores/storePages'
 
-const storeTodos = useStoreTodos()
 const storePages = useStorePages()
 const props = defineProps({
   item: {
