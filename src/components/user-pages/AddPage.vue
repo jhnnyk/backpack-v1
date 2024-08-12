@@ -38,6 +38,7 @@ const addNewPage = () => {
         type: 'text',
         title: 'Welcome to your new page',
         description: 'Add / edit / delete this content to get started',
+        completed: false,
       },
     ],
     pageSort: 0,

@@ -36,7 +36,7 @@
       </Sortable>
     </q-list>
 
-    <AddTodoItem />
+    <AddContentItem />
   </div>
 </template>
 
@@ -48,7 +48,7 @@ import { useStoreTodos } from 'src/stores/storeTodos'
 import { useStorePages } from 'src/stores/storePages'
 import ContentItem from 'src/components/content-items/ContentItem.vue'
 import LoadingSpinner from '../LoadingSpinner.vue'
-import AddTodoItem from 'src/components/todos/AddTodoItem.vue'
+import AddContentItem from 'src/components/content-items/AddContentItem.vue'
 
 const storeTodos = useStoreTodos()
 const storePages = useStorePages()

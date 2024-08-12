@@ -5,9 +5,11 @@ import { db } from 'src/boot/firebase'
 import {
   addDoc,
   collection,
+  doc,
   onSnapshot,
   orderBy,
   query,
+  updateDoc,
   where,
 } from 'firebase/firestore'
 
@@ -17,6 +19,7 @@ export const useStorePages = defineStore('pages', () => {
   // state
   const pages = ref([])
   const error = ref(null)
+  const addItemError = ref(null)
   const pagesAreLoading = ref(false)
   const currentPage = ref({})
 
@@ -63,6 +66,17 @@ export const useStorePages = defineStore('pages', () => {
     })
   }
 
+  const addNewItem = async (newItem) => {
+    addItemError.value = null
+    await currentPage.value.content.push(newItem)
+    try {
+      const itemRef = doc(db, 'pages', currentPage.value.id)
+      await updateDoc(itemRef, { content: currentPage.value.content })
+    } catch (err) {
+      addItemError.value = err.message
+    }
+  }
+
   // helpers
   watch(
     [route, () => pages.value],
@@ -77,9 +91,11 @@ export const useStorePages = defineStore('pages', () => {
   return {
     pages,
     error,
+    addItemError,
     currentPage,
     pagesAreLoading,
     addPage,
+    addNewItem,
     loadPages,
   }
 })
