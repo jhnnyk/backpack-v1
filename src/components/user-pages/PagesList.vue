@@ -9,9 +9,9 @@
           <q-icon name="mdi-shopping" />
         </q-item-section>
         <q-item-section class="text-grey-9">{{ page.name }}</q-item-section>
-        <q-item-section side>{{
+        <!-- <q-item-section side>{{
           storeTodos.pageTodos(page.id).length
-        }}</q-item-section>
+        }}</q-item-section> -->
       </q-item>
     </q-list>
   </div>
@@ -19,9 +19,7 @@
 
 <script setup>
 import { useStorePages } from 'src/stores/storePages'
-import { useStoreTodos } from 'src/stores/storeTodos'
 import LoadingSpinner from '../LoadingSpinner.vue'
 
 const storePages = useStorePages()
-const storeTodos = useStoreTodos()
 </script>
