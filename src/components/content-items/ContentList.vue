@@ -1,21 +1,24 @@
 <template>
-  <h3 class="text-center" v-if="storePages.currentPage">
-    {{ storePages.currentPage.name }}
-  </h3>
   <div v-if="storePages.pagesAreLoading" class="text-center">
     <LoadingSpinner />
   </div>
 
   <div v-else>
-    <div class="row">
-      <q-space />
+    <div>
+      <h5
+        class="text-center text-grey-9 text-uppercase q-ma-sm"
+        v-if="storePages.currentPage"
+      >
+        {{ storePages.currentPage.name }}
+      </h5>
       <q-btn
         @click="
           storePages.options.showOptions = !storePages.options.showOptions
         "
         :icon="!storePages.options.showOptions ? 'mdi-cog' : 'mdi-check'"
-        class="q-px-sm q-mr-md"
-        color="primary"
+        class="fixed-top-right"
+        style="top: 55px; right: 5px"
+        color="blue-grey-4"
         round
         no-caps
         dense

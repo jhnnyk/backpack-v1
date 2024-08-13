@@ -25,7 +25,9 @@
         <div v-else>
           <q-icon name="mdi-account-circle" />
           {{ storeUsers.currentUser.displayName }}
-          <q-btn @click="storeUsers.logoutUser">Logout</q-btn>
+          <q-btn @click="storeUsers.logoutUser" class="q-ml-sm" no-caps rounded>
+            Logout
+          </q-btn>
         </div>
       </q-toolbar>
     </q-header>

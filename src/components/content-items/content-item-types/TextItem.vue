@@ -1,7 +1,7 @@
 <template>
   <q-item-section class="text-grey-9">
     <q-item-label>
-      <h4>{{ item.title }}</h4>
+      <h4 class="text-center q-my-sm">{{ item.title }}</h4>
     </q-item-label>
     <p>{{ item.description }}</p>
   </q-item-section>

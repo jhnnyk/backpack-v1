@@ -1,7 +1,9 @@
 <template>
   <q-item-section class="text-grey-9">
     <q-item-label>
-      <hr />
+      <q-separator color="grey-6" />
+      <q-separator color="grey-4" />
+      <q-separator color="grey-2" />
     </q-item-label>
   </q-item-section>
 </template>
