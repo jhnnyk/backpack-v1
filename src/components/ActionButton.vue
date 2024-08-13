@@ -16,7 +16,6 @@ import { useStorePages } from 'src/stores/storePages'
 const storePages = useStorePages()
 
 const showForm = (contentType) => {
-  storePages.options.showAddItemForm = true
-  console.log(contentType)
+  storePages.options.addItemType = contentType
 }
 </script>

@@ -26,7 +26,7 @@ export const useStorePages = defineStore('pages', () => {
   const options = reactive({
     showOptions: false,
     showPageOptions: false,
-    showAddItemForm: false,
+    addItemType: '',
   })
 
   // actions

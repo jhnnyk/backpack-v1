@@ -5,7 +5,7 @@
         v-model="newItem"
         :error="!!storePages.addItemError"
         class="q-mx-lg"
-        placeholder="new todo here"
+        :placeholder="'new ' + storePages.options.addItemType + ' here'"
         bottom-slots
         rounded
         standout
@@ -47,7 +47,7 @@ const addNewItem = async () => {
     title: newItem.value,
     description: 'lorem ipsum',
     completed: false,
-    type: 'todo',
+    type: storePages.options.addItemType,
   })
 
   // if adding todo was successful, reset the form
@@ -57,6 +57,6 @@ const addNewItem = async () => {
 }
 
 const closeForm = () => {
-  storePages.options.showAddItemForm = false
+  storePages.options.addItemType = ''
 }
 </script>
