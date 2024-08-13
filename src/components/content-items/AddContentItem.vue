@@ -5,7 +5,7 @@
         v-model="newItem"
         :error="!!storePages.addItemError"
         class="q-mx-lg"
-        placeholder="new item here"
+        placeholder="new todo here"
         bottom-slots
         rounded
         standout
@@ -19,6 +19,15 @@
 
     <div class="col-1">
       <q-btn type="submit" color="primary" icon="mdi-plus" size="md" round />
+    </div>
+    <div class="col-1">
+      <q-btn
+        @click="closeForm"
+        color="negative"
+        icon="mdi-close"
+        size="md"
+        round
+      />
     </div>
   </q-form>
 </template>
@@ -45,5 +54,9 @@ const addNewItem = async () => {
   if (!storePages.addItemError) {
     newItem.value = ''
   }
+}
+
+const closeForm = () => {
+  storePages.options.showAddItemForm = false
 }
 </script>

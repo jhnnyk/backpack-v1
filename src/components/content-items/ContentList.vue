@@ -36,7 +36,7 @@
       </Sortable>
     </q-list>
 
-    <AddContentItem />
+    <AddContentItem v-if="storePages.options.showAddItemForm" />
   </div>
 </template>
 
