@@ -2,10 +2,10 @@
   <q-form @submit="addNewItem" class="row q-mt-lg">
     <div class="col-10">
       <q-input
-        v-model="newItem"
+        v-model="newItemTitle"
         :error="!!storePages.addItemError"
         class="q-mx-lg"
-        :placeholder="'new ' + storePages.options.addItemType + ' here'"
+        :placeholder="'add new ' + storePages.options.addItemType + ' here'"
         bottom-slots
         rounded
         standout
@@ -39,12 +39,12 @@ import { useStorePages } from 'src/stores/storePages'
 
 const storePages = useStorePages()
 
-const newItem = ref('')
+const newItemTitle = ref('')
 
 const addNewItem = async () => {
   await storePages.addNewItem({
     id: uid(),
-    title: newItem.value,
+    title: newItemTitle.value,
     description: 'lorem ipsum',
     completed: false,
     type: storePages.options.addItemType,
@@ -52,7 +52,7 @@ const addNewItem = async () => {
 
   // if adding todo was successful, reset the form
   if (!storePages.addItemError) {
-    newItem.value = ''
+    newItemTitle.value = ''
   }
 }
 
