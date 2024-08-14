@@ -30,6 +30,7 @@
       <q-editor
         v-if="storePages.options.addItemType == 'text'"
         v-model="newItemDescription"
+        paragraph-tag="p"
       />
     </div>
 
