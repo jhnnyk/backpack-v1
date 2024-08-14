@@ -1,9 +1,16 @@
 <template>
   <ActionButton
-    v-if="storePages.options.addItemType === ''"
+    v-if="
+      storePages.options.addItemType == '' &&
+      storePages.options.showOptions == false
+    "
     class="fixed-bottom-right q-ma-lg"
   />
-  <q-form v-else @submit="addNewItem" class="row q-mt-lg">
+  <q-form
+    v-if="storePages.options.addItemType != ''"
+    @submit="addNewItem"
+    class="row q-mt-lg"
+  >
     <div class="col-8">
       <q-input
         v-model="newItemTitle"
