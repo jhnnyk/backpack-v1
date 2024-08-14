@@ -16,7 +16,7 @@
           storePages.options.showOptions = !storePages.options.showOptions
         "
         :icon="!storePages.options.showOptions ? 'mdi-cog' : 'mdi-check'"
-        class="fixed-top-right"
+        class="fixed-top-right z-top"
         style="top: 55px; right: 5px"
         color="blue-grey-4"
         round

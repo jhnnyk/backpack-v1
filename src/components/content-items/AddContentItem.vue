@@ -1,11 +1,10 @@
 <template>
-  <ActionButton class="fixed-bottom-right q-ma-lg" />
-  <q-form
-    @submit="addNewItem"
-    v-if="storePages.options.addItemType != ''"
-    class="row q-mt-lg"
-  >
-    <div class="col-10">
+  <ActionButton
+    v-if="storePages.options.addItemType === ''"
+    class="fixed-bottom-right q-ma-lg"
+  />
+  <q-form v-else @submit="addNewItem" class="row q-mt-lg">
+    <div class="col-8">
       <q-input
         v-model="newItemTitle"
         :error="!!storePages.addItemError"
@@ -22,12 +21,11 @@
       </q-input>
     </div>
 
-    <div class="col-1">
+    <div class="col-3">
       <q-btn type="submit" color="primary" icon="mdi-plus" size="md" round />
-    </div>
-    <div class="col-1">
       <q-btn
         @click="closeForm"
+        class="q-ml-sm"
         color="negative"
         icon="mdi-close"
         size="md"

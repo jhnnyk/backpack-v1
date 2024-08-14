@@ -2,11 +2,20 @@
   <q-fab color="primary" icon="mdi-plus" direction="left">
     <q-fab-action
       @click="showForm('todo')"
+      color="secondary"
       icon="mdi-checkbox-marked-circle-outline"
     />
-    <q-fab-action @click="showForm('text')" icon="mdi-note-text-outline" />
-    <q-fab-action @click="showForm('header')" icon="mdi-format-header-1" />
-    <q-fab-action @click="addDivider" icon="mdi-line-scan" />
+    <q-fab-action
+      @click="showForm('text')"
+      color="secondary"
+      icon="mdi-note-text-outline"
+    />
+    <q-fab-action
+      @click="showForm('header')"
+      color="secondary"
+      icon="mdi-format-header-1"
+    />
+    <q-fab-action @click="addDivider" color="secondary" icon="mdi-line-scan" />
   </q-fab>
 </template>
 
