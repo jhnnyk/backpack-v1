@@ -3,7 +3,7 @@
     <LoadingSpinner />
   </div>
 
-  <div v-else>
+  <div v-else id="content-list">
     <div>
       <h5
         class="text-center text-grey-9 text-uppercase q-ma-sm"

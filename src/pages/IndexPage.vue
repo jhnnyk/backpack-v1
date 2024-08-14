@@ -1,5 +1,5 @@
 <template>
-  <q-page>
+  <q-page class="q-pb-xl">
     <div v-if="user">
       <!-- <p class="q-ma-md">Hello {{ user.displayName }}!</p> -->
       <ContentList />
