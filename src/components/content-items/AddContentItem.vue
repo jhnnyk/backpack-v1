@@ -1,5 +1,10 @@
 <template>
-  <q-form @submit="addNewItem" class="row q-mt-lg">
+  <ActionButton class="fixed-bottom-right q-ma-lg" />
+  <q-form
+    @submit="addNewItem"
+    v-if="storePages.options.addItemType != ''"
+    class="row q-mt-lg"
+  >
     <div class="col-10">
       <q-input
         v-model="newItemTitle"
@@ -36,6 +41,7 @@
 import { ref } from 'vue'
 import { uid } from 'quasar'
 import { useStorePages } from 'src/stores/storePages'
+import ActionButton from 'src/components/ActionButton.vue'
 
 const storePages = useStorePages()
 
