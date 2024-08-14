@@ -16,7 +16,7 @@
         v-model="newItemTitle"
         :error="!!storePages.addItemError"
         class="q-mx-lg"
-        :placeholder="'add new ' + storePages.options.addItemType + ' here'"
+        :placeholder="'new ' + storePages.options.addItemType + ' title'"
         bottom-slots
         rounded
         standout
@@ -26,6 +26,11 @@
           {{ storePages.addItemError }}
         </template>
       </q-input>
+
+      <q-editor
+        v-if="storePages.options.addItemType == 'text'"
+        v-model="newItemDescription"
+      />
     </div>
 
     <div class="col-3">
@@ -51,12 +56,13 @@ import ActionButton from 'src/components/ActionButton.vue'
 const storePages = useStorePages()
 
 const newItemTitle = ref('')
+const newItemDescription = ref('')
 
 const addNewItem = async () => {
   await storePages.addNewItem({
     id: uid(),
     title: newItemTitle.value,
-    description: 'lorem ipsum',
+    description: newItemDescription.value,
     completed: false,
     type: storePages.options.addItemType,
   })
@@ -64,6 +70,7 @@ const addNewItem = async () => {
   // if adding todo was successful, reset the form
   if (!storePages.addItemError) {
     newItemTitle.value = ''
+    newItemDescription.value = ''
   }
 }
 
