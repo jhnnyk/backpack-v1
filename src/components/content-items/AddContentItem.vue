@@ -76,8 +76,8 @@ const newItemTitle = ref('')
 const newItemDescription = ref('')
 
 const addNewItem = async () => {
-  const cleanTitle = sanitizeHtml(newItemTitle.value)
-  const cleanDesc = sanitizeHtml(newItemDescription.value)
+  const cleanTitle = sanitizeHtml(newItemTitle.value, sanitizeHtmlOptions)
+  const cleanDesc = sanitizeHtml(newItemDescription.value, sanitizeHtmlOptions)
 
   await storePages.addNewItem({
     id: uid(),
@@ -96,5 +96,64 @@ const addNewItem = async () => {
 
 const closeForm = () => {
   storePages.options.addItemType = ''
+}
+
+const sanitizeHtmlOptions = {
+  allowedTags: [
+    'a',
+    'b',
+    'blockquote',
+    'br',
+    'code',
+    'dd',
+    'div',
+    'dl',
+    'dt',
+    'em',
+    'h1',
+    'h2',
+    'h3',
+    'h4',
+    'h5',
+    'h6',
+    'hr',
+    'i',
+    'li',
+    'ol',
+    'p',
+    'pre',
+    'ul',
+    'span',
+    'strong',
+    'sub',
+    'sup',
+    'table',
+    'tbody',
+    'td',
+    'tfoot',
+    'th',
+    'thead',
+    'tr',
+    'u',
+  ],
+  nonBooleanAttributes: [
+    'alt',
+    'class',
+    'color',
+    'height',
+    'name',
+    'size',
+    'style',
+    'target',
+    'title',
+    'width',
+  ],
+  allowedAttributes: {
+    a: ['alt', 'href', 'name', 'target'],
+    div: ['class', 'style'],
+    p: ['class', 'style'],
+  },
+  allowedIframeHostnames: ['www.youtube.com'],
+  selfClosing: ['br', 'hr'],
 }
 </script>
