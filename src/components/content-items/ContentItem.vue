@@ -8,7 +8,13 @@
 
     <q-item-section v-if="storePages.options.showOptions" side top>
       <div>
-        <q-btn icon="mdi-square-edit-outline" size="sm" flat round />
+        <q-btn
+          v-if="item.type != 'divider'"
+          icon="mdi-square-edit-outline"
+          size="sm"
+          flat
+          round
+        />
         <q-btn
           @click="storePages.deleteContentItem(item.id)"
           icon="mdi-delete"
