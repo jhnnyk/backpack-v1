@@ -44,7 +44,7 @@ const popUp = ref()
 const disablePopUp = ref(true)
 
 const onTodoUpdate = (value) => {
-  console.log(value)
+  storePages.updateContentItem(props.item.id, { title: value })
 }
 
 const showPopup = () => {

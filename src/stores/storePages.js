@@ -101,6 +101,16 @@ export const useStorePages = defineStore('pages', () => {
     }
   }
 
+  const updateContentItem = (contentItemId, updates) => {
+    const index = getContentItemIndex(contentItemId)
+    currentPage.value.content[index] = {
+      ...currentPage.value.content[index],
+      ...updates,
+    }
+
+    updatePage(currentPage.value.id, { content: currentPage.value.content })
+  }
+
   const deleteContentItem = (contentItemId) => {
     const index = getContentItemIndex(contentItemId)
     currentPage.value.content.splice(index, 1)
@@ -153,6 +163,7 @@ export const useStorePages = defineStore('pages', () => {
     loadPages,
     updatePage,
     updatePageSort,
+    updateContentItem,
     deleteContentItem,
     deletePage,
   }
