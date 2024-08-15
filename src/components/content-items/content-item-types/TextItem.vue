@@ -3,7 +3,7 @@
     <q-item-label>
       <h4 class="text-center q-my-sm">{{ item.title }}</h4>
     </q-item-label>
-    <p>{{ item.description }}</p>
+    <div v-html="item.description"></div>
   </q-item-section>
 </template>
 
