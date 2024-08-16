@@ -81,9 +81,7 @@ export const useStorePages = defineStore('pages', () => {
       'width',
     ],
     allowedAttributes: {
-      a: ['alt', 'href', 'name', 'target'],
-      div: ['class', 'style'],
-      p: ['class', 'style'],
+      '*': ['alt', 'class', 'href', 'name', 'style', 'target'],
     },
     allowedIframeHostnames: ['www.youtube.com'],
     selfClosing: ['br', 'hr'],

@@ -39,7 +39,7 @@ const addNewPage = () => {
         type: 'text',
         title: 'welcome content',
         description: `
-          <h3>Welcome to your new page</h3>
+          <h4 style="text-align:center">Welcome to your new page</h4>
           <p>Add / edit / delete this content to get started.</p>`,
         completed: false,
       },
