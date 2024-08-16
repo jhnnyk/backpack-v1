@@ -3,7 +3,7 @@
     <q-checkbox v-model="completed" />
   </q-item-section>
   <q-item-section class="text-grey-9">
-    <q-item-label> {{ item.title }}</q-item-label>
+    <q-item-label>{{ item.title }}</q-item-label>
     <q-popup-edit
       @save="onTodoUpdate"
       @hide="disablePopUp = true"
