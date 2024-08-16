@@ -23,6 +23,7 @@
         </p>
         <p>
           <q-btn
+            @click="resendEmailVerification"
             label="Resend email verification"
             color="secondary"
             no-caps
@@ -49,12 +50,16 @@
 </template>
 
 <script setup>
+import { useQuasar } from 'quasar'
 import { useRouter } from 'vue-router'
 import { useStoreUsers } from 'src/stores/storeUsers'
 import AddPage from 'src/components/user-pages/AddPage.vue'
 import PagesList from 'src/components/user-pages/PagesList.vue'
 import LoadingSpinner from 'src/components/LoadingSpinner.vue'
+import { sendEmailVerification } from 'firebase/auth'
+import { auth } from 'src/boot/firebase'
 
+const $q = useQuasar()
 const router = useRouter()
 const storeUsers = useStoreUsers()
 
@@ -65,5 +70,14 @@ const props = defineProps({
 
 const refreshPage = () => {
   router.go()
+}
+
+const resendEmailVerification = () => {
+  sendEmailVerification(auth.currentUser)
+  $q.notify({
+    message: 'Email verification sent!',
+    color: 'accent',
+    position: 'top',
+  })
 }
 </script>
