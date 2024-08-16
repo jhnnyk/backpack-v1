@@ -9,27 +9,26 @@
   <q-form
     v-if="storePages.options.addItemType != ''"
     @submit="addNewItem"
-    class="row q-mt-lg"
+    class="q-mt-lg"
   >
-    <div class="col-8">
+    <div class="row">
       <q-input
+        v-if="storePages.options.addItemType != 'text'"
         v-model="newItemTitle"
         :error="!!storePages.addItemError"
         class="q-mx-lg"
+        style="width: 100%"
         :placeholder="'new ' + storePages.options.addItemType + ' title'"
-        bottom-slots
         rounded
         standout
         dense
       >
-        <template v-slot:error>
-          {{ storePages.addItemError }}
-        </template>
       </q-input>
 
       <q-editor
         v-if="storePages.options.addItemType == 'text'"
         v-model="newItemDescription"
+        class="q-mx-lg"
         paragraph-tag="p"
         :toolbar="[
           ['left', 'center', 'right', 'justify'],
@@ -46,10 +45,14 @@
           ['undo', 'redo'],
           ['viewsource'],
         ]"
-      />
+      >
+      </q-editor>
+
+      <p v-if="storePages.addItemError">{{ storePages.addItemError }}</p>
     </div>
 
-    <div class="col-3">
+    <div class="row q-mr-lg">
+      <q-space />
       <q-btn type="submit" color="primary" icon="mdi-plus" size="md" round />
       <q-btn
         @click="closeForm"
