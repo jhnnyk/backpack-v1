@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { reactive, ref, watch, watchEffect } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { db } from 'src/boot/firebase'
 import {
   addDoc,
@@ -17,6 +17,7 @@ import { useQuasar } from 'quasar'
 
 export const useStorePages = defineStore('pages', () => {
   const route = useRoute()
+  const router = useRouter()
   const $q = useQuasar()
 
   // state
@@ -195,6 +196,8 @@ export const useStorePages = defineStore('pages', () => {
     try {
       await deleteDoc(doc(db, 'pages', pageId))
       await updatePageSort(pages.value)
+      options.showPageOptions = false
+      router.push('/')
     } catch (err) {
       error.value = err.message
     }
