@@ -9,14 +9,14 @@
   <q-form
     v-if="storePages.options.addItemType != ''"
     @submit="addNewItem"
-    class="q-mt-lg"
+    class="q-ma-lg"
   >
     <div class="row">
       <q-input
         v-if="storePages.options.addItemType != 'text'"
         v-model="newItemTitle"
         :error="!!storePages.addItemError"
-        class="q-mx-lg"
+        @focus="clearError"
         style="width: 100%"
         :placeholder="'new ' + storePages.options.addItemType + ' title'"
         rounded
@@ -28,7 +28,6 @@
       <q-editor
         v-if="storePages.options.addItemType == 'text'"
         v-model="newItemDescription"
-        class="q-mx-lg"
         paragraph-tag="p"
         :toolbar="[
           ['left', 'center', 'right', 'justify'],
@@ -48,10 +47,12 @@
       >
       </q-editor>
 
-      <p v-if="storePages.addItemError">{{ storePages.addItemError }}</p>
+      <p v-if="storePages.addItemError" class="text-negative">
+        {{ storePages.addItemError }}
+      </p>
     </div>
 
-    <div class="row q-mr-lg">
+    <div class="row">
       <q-space />
       <q-btn type="submit" color="primary" icon="mdi-plus" size="md" round />
       <q-btn
@@ -97,8 +98,13 @@ const addNewItem = async () => {
   }
 }
 
+const clearError = () => {
+  storePages.addItemError = null
+}
+
 const closeForm = () => {
   storePages.options.addItemType = ''
+  storePages.addItemError = null
 }
 
 const sanitizeHtmlOptions = {
