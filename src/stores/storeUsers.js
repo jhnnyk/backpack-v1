@@ -3,6 +3,7 @@ import { auth } from 'src/boot/firebase'
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
+  sendEmailVerification,
   signInWithEmailAndPassword,
   signOut,
   updateProfile,
@@ -50,13 +51,17 @@ export const useStoreUsers = defineStore('users', () => {
   const registerUser = (formData) => {
     userIsLoading.value = true
     createUserWithEmailAndPassword(auth, formData.email, formData.password)
-      .then((userCredential) => {
+      .then(async (userCredential) => {
         // Signed up
-        updateProfile(auth.currentUser, {
+        await updateProfile(auth.currentUser, {
           displayName: formData.name,
         })
         userIsLoading.value = false
         router.push('/')
+      })
+      .then(() => {
+        // send email verification
+        sendEmailVerification(auth.currentUser)
       })
       .catch((error) => {
         formatErrorMessage(error)
