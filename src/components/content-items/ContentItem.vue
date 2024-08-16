@@ -1,7 +1,6 @@
 <template>
   <q-item>
     <TodoItem v-if="item.type == 'todo'" :item="item" />
-    <TextItem v-else-if="item.type == 'text'" :item="item" />
     <HeaderItem v-else-if="item.type == 'header'" :item="item" />
     <DividerItem v-else-if="item.type == 'divider'" :item="item" />
     <TextItem v-else :item="item" />
