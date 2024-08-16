@@ -13,9 +13,11 @@ import {
   updateDoc,
   where,
 } from 'firebase/firestore'
+import { useQuasar } from 'quasar'
 
 export const useStorePages = defineStore('pages', () => {
   const route = useRoute()
+  const $q = useQuasar()
 
   // state
   const pages = ref([])
@@ -28,6 +30,79 @@ export const useStorePages = defineStore('pages', () => {
     showPageOptions: false,
     addItemType: '',
   })
+  const sanitizeHtmlOptions = {
+    allowedTags: [
+      'a',
+      'b',
+      'blockquote',
+      'br',
+      'code',
+      'dd',
+      'div',
+      'dl',
+      'dt',
+      'em',
+      'h1',
+      'h2',
+      'h3',
+      'h4',
+      'h5',
+      'h6',
+      'hr',
+      'i',
+      'li',
+      'ol',
+      'p',
+      'pre',
+      'ul',
+      'span',
+      'strong',
+      'sub',
+      'sup',
+      'table',
+      'tbody',
+      'td',
+      'tfoot',
+      'th',
+      'thead',
+      'tr',
+      'u',
+    ],
+    nonBooleanAttributes: [
+      'alt',
+      'class',
+      'color',
+      'height',
+      'name',
+      'size',
+      'style',
+      'target',
+      'title',
+      'width',
+    ],
+    allowedAttributes: {
+      a: ['alt', 'href', 'name', 'target'],
+      div: ['class', 'style'],
+      p: ['class', 'style'],
+    },
+    allowedIframeHostnames: ['www.youtube.com'],
+    selfClosing: ['br', 'hr'],
+  }
+  const textEditorToolbar = [
+    ['left', 'center', 'right', 'justify'],
+    ['bold', 'italic', 'strike', 'underline'],
+    [
+      {
+        label: $q.lang.editor.formatting,
+        icon: $q.iconSet.editor.formatting,
+        list: 'no-icons',
+        options: ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'code'],
+      },
+    ],
+    ['link', 'quote', 'unordered', 'ordered'],
+    ['undo', 'redo'],
+    ['viewsource'],
+  ]
 
   // actions
   const addPage = async (newPage) => {
@@ -157,6 +232,8 @@ export const useStorePages = defineStore('pages', () => {
     currentPage,
     pagesAreLoading,
     options,
+    sanitizeHtmlOptions,
+    textEditorToolbar,
     addPage,
     addNewItem,
     sortItemsEnd,

@@ -29,23 +29,8 @@
         v-if="storePages.options.addItemType == 'text'"
         v-model="newItemDescription"
         paragraph-tag="p"
-        :toolbar="[
-          ['left', 'center', 'right', 'justify'],
-          ['bold', 'italic', 'strike', 'underline'],
-          [
-            {
-              label: $q.lang.editor.formatting,
-              icon: $q.iconSet.editor.formatting,
-              list: 'no-icons',
-              options: ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'code'],
-            },
-          ],
-          ['link', 'quote', 'unordered', 'ordered'],
-          ['undo', 'redo'],
-          ['viewsource'],
-        ]"
-      >
-      </q-editor>
+        :toolbar="storePages.textEditorToolbar"
+      />
 
       <p v-if="storePages.addItemError" class="text-negative">
         {{ storePages.addItemError }}
@@ -80,8 +65,14 @@ const newItemTitle = ref('')
 const newItemDescription = ref('')
 
 const addNewItem = async () => {
-  const cleanTitle = sanitizeHtml(newItemTitle.value, sanitizeHtmlOptions)
-  const cleanDesc = sanitizeHtml(newItemDescription.value, sanitizeHtmlOptions)
+  const cleanTitle = sanitizeHtml(
+    newItemTitle.value,
+    storePages.sanitizeHtmlOptions
+  )
+  const cleanDesc = sanitizeHtml(
+    newItemDescription.value,
+    storePages.sanitizeHtmlOptions
+  )
 
   await storePages.addNewItem({
     id: uid(),
@@ -105,64 +96,5 @@ const clearError = () => {
 const closeForm = () => {
   storePages.options.addItemType = ''
   storePages.addItemError = null
-}
-
-const sanitizeHtmlOptions = {
-  allowedTags: [
-    'a',
-    'b',
-    'blockquote',
-    'br',
-    'code',
-    'dd',
-    'div',
-    'dl',
-    'dt',
-    'em',
-    'h1',
-    'h2',
-    'h3',
-    'h4',
-    'h5',
-    'h6',
-    'hr',
-    'i',
-    'li',
-    'ol',
-    'p',
-    'pre',
-    'ul',
-    'span',
-    'strong',
-    'sub',
-    'sup',
-    'table',
-    'tbody',
-    'td',
-    'tfoot',
-    'th',
-    'thead',
-    'tr',
-    'u',
-  ],
-  nonBooleanAttributes: [
-    'alt',
-    'class',
-    'color',
-    'height',
-    'name',
-    'size',
-    'style',
-    'target',
-    'title',
-    'width',
-  ],
-  allowedAttributes: {
-    a: ['alt', 'href', 'name', 'target'],
-    div: ['class', 'style'],
-    p: ['class', 'style'],
-  },
-  allowedIframeHostnames: ['www.youtube.com'],
-  selfClosing: ['br', 'hr'],
 }
 </script>
