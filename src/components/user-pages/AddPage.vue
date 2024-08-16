@@ -37,8 +37,10 @@ const addNewPage = () => {
       {
         id: 'id1',
         type: 'text',
-        title: 'Welcome to your new page',
-        description: 'Add / edit / delete this content to get started',
+        title: 'welcome content',
+        description: `
+          <h3>Welcome to your new page</h3>
+          <p>Add / edit / delete this content to get started.</p>`,
         completed: false,
       },
     ],
