@@ -29,6 +29,7 @@
 <script setup>
 import { nextTick, ref } from 'vue'
 import { useStorePages } from 'src/stores/storePages'
+import sanitizeHtml from 'sanitize-html'
 
 const props = defineProps({
   item: {
@@ -42,7 +43,11 @@ const popUp = ref()
 const disablePopUp = ref(true)
 
 const onHeaderItemUpdate = (value) => {
-  storePages.updateContentItem(props.item.id, { title: value })
+  const cleanHtmlHeaderItem = sanitizeHtml(
+    value,
+    storePages.sanitizeHtmlOptions
+  )
+  storePages.updateContentItem(props.item.id, { title: cleanHtmlHeaderItem })
 }
 
 const showPopup = async () => {
