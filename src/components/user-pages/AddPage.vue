@@ -4,6 +4,7 @@
       <q-input
         v-model="newPageName"
         :error="!!storePages.error"
+        @focus="clearError"
         placeholder="add new page"
         standout
         rounded
@@ -30,6 +31,10 @@ const storeUsers = useStoreUsers()
 const newPageName = ref('')
 
 const addNewPage = () => {
+  if (newPageName.value == '') {
+    return (storePages.error = 'Please name your new page')
+  }
+
   storePages.addPage({
     name: newPageName.value,
     owner: storeUsers.currentUser.uid,
@@ -51,5 +56,9 @@ const addNewPage = () => {
   if (!storePages.error) {
     newPageName.value = ''
   }
+}
+
+const clearError = () => {
+  storePages.error = null
 }
 </script>
