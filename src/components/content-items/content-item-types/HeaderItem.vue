@@ -27,7 +27,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { nextTick, ref } from 'vue'
 import { useStorePages } from 'src/stores/storePages'
 
 const props = defineProps({
@@ -45,10 +45,9 @@ const onHeaderItemUpdate = (value) => {
   storePages.updateContentItem(props.item.id, { title: value })
 }
 
-const showPopup = () => {
+const showPopup = async () => {
   disablePopUp.value = false
-  setTimeout(() => {
-    popUp.value.show()
-  }, 1)
+  await nextTick()
+  popUp.value.show()
 }
 </script>
