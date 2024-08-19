@@ -23,6 +23,7 @@
         </div>
         <div v-else-if="storeUsers.userIsLoading">loading...</div>
         <div v-else>
+          <AccountSettings :displayName="storeUsers.currentUser.displayName" />
           <q-icon name="mdi-account-circle" />
           {{ storeUsers.currentUser.displayName }}
           <q-btn @click="storeUsers.logoutUser" class="q-ml-sm" no-caps rounded>
@@ -51,6 +52,7 @@ import { ref } from 'vue'
 import { useStoreUsers } from 'src/stores/storeUsers'
 import PagesList from 'src/components/user-pages/PagesList.vue'
 import PagesListHeader from 'src/components/user-pages/PagesListHeader.vue'
+import AccountSettings from 'src/components/login/AccountSettings.vue'
 
 const storeUsers = useStoreUsers()
 

@@ -19,6 +19,8 @@
         @focus="clearError"
         style="width: 100%"
         :placeholder="'new ' + storePages.options.addItemType + ' title'"
+        ref="inputField"
+        autofocus
         rounded
         standout
         dense
@@ -61,6 +63,7 @@ import ActionButton from 'src/components/ActionButton.vue'
 
 const storePages = useStorePages()
 
+const inputField = ref()
 const newItemTitle = ref('')
 const newItemDescription = ref('')
 
@@ -86,6 +89,11 @@ const addNewItem = async () => {
   if (!storePages.addItemError) {
     newItemTitle.value = ''
     newItemDescription.value = ''
+    if (storePages.options.addItemType == 'todo') {
+      inputField.value.focus()
+    } else {
+      storePages.options.addItemType = ''
+    }
   }
 }
 
