@@ -74,6 +74,7 @@ export const useStoreUsers = defineStore('users', () => {
   const logoutUser = () => {
     signOut(auth)
     storePages.pages = []
+    router.push('/')
   }
 
   const formatErrorMessage = (error) => {
