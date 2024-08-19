@@ -18,6 +18,7 @@
           <div class="text-subtitle1 q-mt-md q-mb-xs">John Doe</div>
 
           <q-btn
+            @click="storeUsers.logoutUser"
             color="primary"
             label="Logout"
             size="sm"
@@ -33,10 +34,13 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useStoreUsers } from 'src/stores/storeUsers'
 
 defineProps({
   displayName: { String, required: true },
 })
+
+const storeUsers = useStoreUsers()
 
 const mobileData = ref(true)
 const bluetooth = ref(false)
