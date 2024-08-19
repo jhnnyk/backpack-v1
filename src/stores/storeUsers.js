@@ -10,12 +10,14 @@ import {
 } from 'firebase/auth'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useStorePages } from './storePages'
 
 export const useStoreUsers = defineStore('users', () => {
   const router = useRouter()
   const currentUser = ref(null)
   const userIsLoading = ref(false)
   const authError = ref('')
+  const storePages = useStorePages()
 
   const getCurrentUser = () => {
     userIsLoading.value = true
@@ -71,6 +73,7 @@ export const useStoreUsers = defineStore('users', () => {
 
   const logoutUser = () => {
     signOut(auth)
+    storePages.pages = []
   }
 
   const formatErrorMessage = (error) => {
