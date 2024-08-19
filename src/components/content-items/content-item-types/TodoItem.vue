@@ -1,6 +1,6 @@
 <template>
   <q-item-section side>
-    <q-checkbox v-model="completed" />
+    <q-checkbox :model-value="item.completed" @click="toggleTodoCompleted" />
   </q-item-section>
   <q-item-section class="text-grey-9">
     <q-item-label>{{ item.title }}</q-item-label>
@@ -53,5 +53,11 @@ const showPopup = async () => {
   disablePopUp.value = false
   await nextTick()
   popUp.value.show()
+}
+
+const toggleTodoCompleted = () => {
+  storePages.updateContentItem(props.item.id, {
+    completed: !props.item.completed,
+  })
 }
 </script>
