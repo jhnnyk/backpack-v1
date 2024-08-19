@@ -10,7 +10,7 @@
     </div>
 
     <div v-else class="text-center q-pa-lg">
-      Please <RouterLink to="/login">Login</RouterLink>
+      Please <RouterLink to="/login">Login</RouterLink> to access this page.
     </div>
   </q-page>
 </template>

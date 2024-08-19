@@ -42,6 +42,12 @@
         no-caps
       />
     </div>
+    <p v-if="formAction == 'login'" class="text-center q-mt-md">
+      Need an account? <RouterLink to="/signup">Sign Up</RouterLink>
+    </p>
+    <p v-if="formAction == 'signup'" class="text-center q-mt-md">
+      Already have an account? <RouterLink to="/login">Login</RouterLink>
+    </p>
   </q-form>
 </template>
 
