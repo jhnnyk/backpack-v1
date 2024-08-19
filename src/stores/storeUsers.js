@@ -26,6 +26,7 @@ export const useStoreUsers = defineStore('users', () => {
         if (user) {
           currentUser.value = user
           userIsLoading.value = false
+          storePages.loadPages(user.uid)
           resolve()
         } else {
           currentUser.value = null
