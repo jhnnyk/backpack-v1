@@ -1,5 +1,13 @@
 <template>
-  <q-btn icon="mdi-account-circle" :label="displayName" no-caps>
+  <q-btn
+    icon="mdi-account-circle"
+    :label="displayName"
+    class="q-pa-sm"
+    no-caps
+    rounded
+    dense
+    flat
+  >
     <q-menu>
       <div class="row no-wrap q-pa-md">
         <div class="column">
@@ -14,7 +22,7 @@
           <q-avatar
             size="72px"
             font-size="54px"
-            color="grey-7"
+            color="blue-grey-7"
             text-color="white"
           >
             {{ Array.from(displayName)[0].toUpperCase() }}
