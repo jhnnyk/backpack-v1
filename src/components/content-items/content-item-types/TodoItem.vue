@@ -1,8 +1,14 @@
 <template>
   <q-item-section side>
-    <q-checkbox :model-value="item.completed" @click="toggleTodoCompleted" />
+    <q-checkbox
+      :model-value="item.completed"
+      @click="toggleTodoCompleted"
+      :color="item.completed ? 'faded' : ''"
+    />
   </q-item-section>
-  <q-item-section class="text-grey-9">
+  <q-item-section
+    :class="item.completed ? 'text-faded text-strike' : 'text-dark'"
+  >
     <q-item-label>{{ item.title }}</q-item-label>
     <q-popup-edit
       @save="onTodoUpdate"
