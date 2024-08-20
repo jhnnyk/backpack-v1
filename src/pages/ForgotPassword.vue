@@ -41,8 +41,11 @@ const storeUsers = useStoreUsers()
 
 const email = ref('')
 
-const submitForm = () => {
-  console.log(email.value)
+const submitForm = async () => {
+  await storeUsers.passwordReset(email.value)
+  if (!storeUsers.authError) {
+    email.value = ''
+  }
 }
 
 onMounted(() => {

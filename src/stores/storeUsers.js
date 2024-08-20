@@ -4,6 +4,7 @@ import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   sendEmailVerification,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signOut,
   updateProfile,
@@ -72,12 +73,23 @@ export const useStoreUsers = defineStore('users', () => {
       })
   }
 
+  const passwordReset = async (email) => {
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        // TODO: notify - password reset email sent!
+      })
+      .catch((error) => {
+        formatErrorMessage(error)
+      })
+  }
+
   const logoutUser = () => {
     signOut(auth)
     storePages.pages = []
     router.push('/')
   }
 
+  // helper
   const formatErrorMessage = (error) => {
     switch (error.code) {
       case 'auth/email-already-in-use':
@@ -107,6 +119,7 @@ export const useStoreUsers = defineStore('users', () => {
     getCurrentUser,
     loginUser,
     registerUser,
+    passwordReset,
     logoutUser,
   }
 })
