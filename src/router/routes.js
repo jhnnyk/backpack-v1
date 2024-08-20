@@ -10,6 +10,10 @@ const routes = [
       },
       { path: '/login', component: () => import('pages/LoginPage.vue') },
       { path: '/signup', component: () => import('pages/SignupPage.vue') },
+      {
+        path: '/forgotpassword',
+        component: () => import('pages/ForgotPassword.vue'),
+      },
       { path: 'page/:pageId', component: () => import('pages/IndexPage.vue') },
     ],
   },

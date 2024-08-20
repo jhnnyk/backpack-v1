@@ -28,6 +28,14 @@
       label="Password"
       type="password"
     />
+    <p
+      v-if="formAction == 'login'"
+      class="text-caption text-right q-ma-none relative-position"
+      style="top: -13px"
+    >
+      <RouterLink to="/forgotpassword">Forgot password?</RouterLink>
+    </p>
+
     <div v-if="storeUsers.authError" class="text-negative text-center q-mb-sm">
       {{ storeUsers.authError }}
     </div>
