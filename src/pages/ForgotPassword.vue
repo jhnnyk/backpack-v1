@@ -34,7 +34,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useStoreUsers } from 'src/stores/storeUsers'
 
 const storeUsers = useStoreUsers()
@@ -44,4 +44,8 @@ const email = ref('')
 const submitForm = () => {
   console.log(email.value)
 }
+
+onMounted(() => {
+  storeUsers.authError = ''
+})
 </script>
