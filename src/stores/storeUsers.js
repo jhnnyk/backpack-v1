@@ -76,7 +76,7 @@ export const useStoreUsers = defineStore('users', () => {
   const passwordReset = async (email) => {
     sendPasswordResetEmail(auth, email)
       .then(() => {
-        // TODO: notify - password reset email sent!
+        // password reset email sent
       })
       .catch((error) => {
         formatErrorMessage(error)

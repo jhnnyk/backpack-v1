@@ -35,8 +35,10 @@
 
 <script setup>
 import { onMounted, ref } from 'vue'
+import { useQuasar } from 'quasar'
 import { useStoreUsers } from 'src/stores/storeUsers'
 
+const $q = useQuasar()
 const storeUsers = useStoreUsers()
 
 const email = ref('')
@@ -44,6 +46,11 @@ const email = ref('')
 const submitForm = async () => {
   await storeUsers.passwordReset(email.value)
   if (!storeUsers.authError) {
+    $q.notify({
+      message: 'Password reset email sent!',
+      color: 'accent',
+      position: 'top',
+    })
     email.value = ''
   }
 }
