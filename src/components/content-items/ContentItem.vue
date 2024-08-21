@@ -1,11 +1,11 @@
 <template>
-  <q-item>
+  <q-slide-item>
     <TodoItem v-if="item.type == 'todo'" :item="item" />
     <HeaderItem v-else-if="item.type == 'header'" :item="item" />
     <DividerItem v-else-if="item.type == 'divider'" :item="item" />
     <TextItem v-else :item="item" />
 
-    <q-item-section v-if="storePages.options.showOptions" side top>
+    <template v-slot:right>
       <div>
         <q-btn
           @click="storePages.deleteContentItem(item.id)"
@@ -23,8 +23,8 @@
           round
         />
       </div>
-    </q-item-section>
-  </q-item>
+    </template>
+  </q-slide-item>
 </template>
 
 <script setup>
