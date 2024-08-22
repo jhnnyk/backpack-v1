@@ -1,36 +1,54 @@
 <template>
-  <q-item-section side>
-    <q-checkbox
-      :model-value="item.completed"
-      @click="toggleTodoCompleted"
-      :color="item.completed ? 'faded' : ''"
-    />
-  </q-item-section>
-  <q-item-section
-    :class="item.completed ? 'text-faded text-strike' : 'text-dark'"
-  >
-    <q-item-label>{{ item.title }}</q-item-label>
-    <q-popup-edit
-      @save="onTodoUpdate"
-      @hide="disablePopUp = true"
-      :model-value="item.title"
-      v-slot="scope"
-      ref="popUp"
-      :disable="disablePopUp"
-      buttons
+  <q-slide-item>
+    <q-item-section side>
+      <q-checkbox
+        :model-value="item.completed"
+        @click="toggleTodoCompleted"
+        :color="item.completed ? 'faded' : ''"
+      />
+    </q-item-section>
+    <q-item-section
+      :class="item.completed ? 'text-faded text-strike' : 'text-dark'"
     >
-      <q-input v-model="scope.value" @keyup.enter="scope.set" autofocus />
-    </q-popup-edit>
-  </q-item-section>
-  <q-item-section v-if="storePages.options.showOptions" side top>
-    <q-btn
-      @click="showPopup"
-      icon="mdi-square-edit-outline"
-      size="sm"
-      flat
-      round
-    />
-  </q-item-section>
+      <q-item-label>{{ item.title }}</q-item-label>
+      <q-popup-edit
+        @save="onTodoUpdate"
+        @hide="disablePopUp = true"
+        :model-value="item.title"
+        v-slot="scope"
+        ref="popUp"
+        :disable="disablePopUp"
+        buttons
+      >
+        <q-input v-model="scope.value" @keyup.enter="scope.set" autofocus />
+      </q-popup-edit>
+    </q-item-section>
+
+    <template v-slot:right>
+      <q-btn
+        @click="showPopup"
+        icon="mdi-square-edit-outline"
+        size="sm"
+        flat
+        round
+      />
+      <q-btn
+        @click="storePages.deleteContentItem(item.id)"
+        icon="mdi-delete"
+        color="negative"
+        size="sm"
+        flat
+        round
+      />
+      <q-btn
+        icon="mdi-reorder-horizontal"
+        class="handle"
+        size="sm"
+        flat
+        round
+      />
+    </template>
+  </q-slide-item>
 </template>
 
 <script setup>
