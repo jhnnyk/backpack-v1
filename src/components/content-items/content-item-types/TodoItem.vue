@@ -1,5 +1,5 @@
 <template>
-  <q-slide-item>
+  <q-slide-item @right="onSlidingLeft">
     <template v-slot:right>
       <q-btn
         @click="showPopup"
@@ -68,10 +68,12 @@ const props = defineProps({
 const storePages = useStorePages()
 const popUp = ref()
 const disablePopUp = ref(true)
+const resetSlide = ref(null)
 
 const onTodoUpdate = (value) => {
   const cleanHtmlTodo = sanitizeHtml(value, storePages.sanitizeHtmlOptions)
   storePages.updateContentItem(props.item.id, { title: cleanHtmlTodo })
+  closeSlider(resetSlide.value)
 }
 
 const showPopup = async () => {
@@ -84,5 +86,15 @@ const toggleTodoCompleted = () => {
   storePages.updateContentItem(props.item.id, {
     completed: !props.item.completed,
   })
+}
+
+const onSlidingLeft = ({ reset }) => {
+  console.log('sliding left')
+  resetSlide.value = reset
+  // closeSlider(resetSlide.value)
+}
+
+const closeSlider = (reset) => {
+  reset()
 }
 </script>
