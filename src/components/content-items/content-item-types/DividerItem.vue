@@ -1,6 +1,7 @@
 <template>
-  <q-slide-item>
+  <q-slide-item @right="onSlidingLeft" right-color="faded">
     <template v-slot:right>
+      <span>- - divider - -</span>
       <q-btn
         @click="storePages.deleteContentItem(item.id)"
         icon="mdi-delete"
@@ -16,6 +17,7 @@
         flat
         round
       />
+      <q-btn @click="closeSlider" icon="mdi-close" size="sm" flat round />
     </template>
 
     <q-item>
@@ -31,10 +33,24 @@
 </template>
 
 <script setup>
+import { ref } from 'vue'
+import { useStorePages } from 'src/stores/storePages'
+
 const props = defineProps({
   item: {
     type: Object,
     required: true,
   },
 })
+
+const storePages = useStorePages()
+const resetSlide = ref(null)
+
+const onSlidingLeft = ({ reset }) => {
+  resetSlide.value = reset
+}
+
+const closeSlider = () => {
+  resetSlide.value()
+}
 </script>
