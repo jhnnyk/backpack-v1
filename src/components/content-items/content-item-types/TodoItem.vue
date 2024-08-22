@@ -1,5 +1,5 @@
 <template>
-  <q-slide-item @right="onSlidingLeft">
+  <q-slide-item @right="onSlidingLeft" right-color="faded">
     <template v-slot:right>
       <q-btn
         @click="showPopup"
@@ -89,9 +89,7 @@ const toggleTodoCompleted = () => {
 }
 
 const onSlidingLeft = ({ reset }) => {
-  console.log('sliding left')
   resetSlide.value = reset
-  // closeSlider(resetSlide.value)
 }
 
 const closeSlider = (reset) => {
