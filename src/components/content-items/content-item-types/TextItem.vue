@@ -1,5 +1,5 @@
 <template>
-  <q-slide-item>
+  <q-slide-item @right="onSlidingLeft" right-color="faded">
     <template v-slot:right>
       <q-btn
         @click="showPopup"
@@ -23,6 +23,7 @@
         flat
         round
       />
+      <q-btn @click="closeSlider" icon="mdi-close" size="sm" flat round />
     </template>
 
     <q-item>
@@ -64,6 +65,7 @@ const props = defineProps({
 const storePages = useStorePages()
 const popUp = ref()
 const disablePopUp = ref(true)
+const resetSlide = ref(null)
 
 const onTextItemUpdate = (value) => {
   const cleanHtmlText = sanitizeHtml(value, storePages.sanitizeHtmlOptions)
@@ -74,5 +76,14 @@ const showPopup = async () => {
   disablePopUp.value = false
   await nextTick()
   popUp.value.show()
+  closeSlider()
+}
+
+const onSlidingLeft = ({ reset }) => {
+  resetSlide.value = reset
+}
+
+const closeSlider = () => {
+  resetSlide.value()
 }
 </script>
