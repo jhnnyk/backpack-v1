@@ -66,7 +66,6 @@ const props = defineProps({
 })
 
 const storePages = useStorePages()
-const completed = ref(false)
 const popUp = ref()
 const disablePopUp = ref(true)
 
