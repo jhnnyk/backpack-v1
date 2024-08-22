@@ -23,6 +23,7 @@
         flat
         round
       />
+      <q-btn @click="closeSlider" icon="mdi-close" size="sm" flat round />
     </template>
 
     <q-item>
@@ -73,13 +74,13 @@ const resetSlide = ref(null)
 const onTodoUpdate = (value) => {
   const cleanHtmlTodo = sanitizeHtml(value, storePages.sanitizeHtmlOptions)
   storePages.updateContentItem(props.item.id, { title: cleanHtmlTodo })
-  closeSlider(resetSlide.value)
 }
 
 const showPopup = async () => {
   disablePopUp.value = false
   await nextTick()
   popUp.value.show()
+  closeSlider()
 }
 
 const toggleTodoCompleted = () => {
@@ -92,7 +93,7 @@ const onSlidingLeft = ({ reset }) => {
   resetSlide.value = reset
 }
 
-const closeSlider = (reset) => {
-  reset()
+const closeSlider = () => {
+  resetSlide.value()
 }
 </script>
