@@ -25,7 +25,7 @@
       />
     </div>
 
-    <q-list v-if="storePages.currentPage" class="full-width q-pt-md">
+    <q-list v-if="storePages.currentPage" class="full-width">
       <Sortable
         @end="storePages.sortItemsEnd"
         :list="storePages.currentPage.content"

@@ -1,29 +1,5 @@
 <template>
   <q-slide-item>
-    <q-item-section side>
-      <q-checkbox
-        :model-value="item.completed"
-        @click="toggleTodoCompleted"
-        :color="item.completed ? 'faded' : ''"
-      />
-    </q-item-section>
-    <q-item-section
-      :class="item.completed ? 'text-faded text-strike' : 'text-dark'"
-    >
-      <q-item-label>{{ item.title }}</q-item-label>
-      <q-popup-edit
-        @save="onTodoUpdate"
-        @hide="disablePopUp = true"
-        :model-value="item.title"
-        v-slot="scope"
-        ref="popUp"
-        :disable="disablePopUp"
-        buttons
-      >
-        <q-input v-model="scope.value" @keyup.enter="scope.set" autofocus />
-      </q-popup-edit>
-    </q-item-section>
-
     <template v-slot:right>
       <q-btn
         @click="showPopup"
@@ -48,6 +24,32 @@
         round
       />
     </template>
+
+    <q-item>
+      <q-item-section side>
+        <q-checkbox
+          :model-value="item.completed"
+          @click="toggleTodoCompleted"
+          :color="item.completed ? 'faded' : ''"
+        />
+      </q-item-section>
+      <q-item-section
+        :class="item.completed ? 'text-faded text-strike' : 'text-dark'"
+      >
+        <q-item-label>{{ item.title }}</q-item-label>
+        <q-popup-edit
+          @save="onTodoUpdate"
+          @hide="disablePopUp = true"
+          :model-value="item.title"
+          v-slot="scope"
+          ref="popUp"
+          :disable="disablePopUp"
+          buttons
+        >
+          <q-input v-model="scope.value" @keyup.enter="scope.set" autofocus />
+        </q-popup-edit>
+      </q-item-section>
+    </q-item>
   </q-slide-item>
 </template>
 

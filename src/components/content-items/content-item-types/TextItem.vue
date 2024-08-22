@@ -1,25 +1,5 @@
 <template>
   <q-slide-item>
-    <q-item-section class="text-grey-9">
-      <div v-html="item.description"></div>
-      <q-popup-edit
-        @save="onTextItemUpdate"
-        @hide="disablePopUp = true"
-        :model-value="item.description"
-        v-slot="scope"
-        ref="popUp"
-        :disable="disablePopUp"
-        buttons
-      >
-        <q-editor
-          v-model="scope.value"
-          paragraph-tag="p"
-          :toolbar="storePages.textEditorToolbar"
-          autofocus
-        />
-      </q-popup-edit>
-    </q-item-section>
-
     <template v-slot:right>
       <q-btn
         @click="showPopup"
@@ -44,6 +24,28 @@
         round
       />
     </template>
+
+    <q-item>
+      <q-item-section class="text-grey-9">
+        <div v-html="item.description"></div>
+        <q-popup-edit
+          @save="onTextItemUpdate"
+          @hide="disablePopUp = true"
+          :model-value="item.description"
+          v-slot="scope"
+          ref="popUp"
+          :disable="disablePopUp"
+          buttons
+        >
+          <q-editor
+            v-model="scope.value"
+            paragraph-tag="p"
+            :toolbar="storePages.textEditorToolbar"
+            autofocus
+          />
+        </q-popup-edit>
+      </q-item-section>
+    </q-item>
   </q-slide-item>
 </template>
 

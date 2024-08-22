@@ -1,13 +1,5 @@
 <template>
   <q-slide-item>
-    <q-item-section class="text-grey-9 q-pa-md">
-      <q-item-label>
-        <q-separator color="grey-6" />
-        <q-separator color="grey-4" />
-        <q-separator color="grey-2" />
-      </q-item-label>
-    </q-item-section>
-
     <template v-slot:right>
       <q-btn
         @click="storePages.deleteContentItem(item.id)"
@@ -25,6 +17,16 @@
         round
       />
     </template>
+
+    <q-item>
+      <q-item-section class="text-grey-9">
+        <q-item-label>
+          <q-separator color="grey-6" />
+          <q-separator color="grey-4" />
+          <q-separator color="grey-2" />
+        </q-item-label>
+      </q-item-section>
+    </q-item>
   </q-slide-item>
 </template>
 
