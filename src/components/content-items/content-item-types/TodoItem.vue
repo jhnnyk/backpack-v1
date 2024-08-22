@@ -1,6 +1,7 @@
 <template>
   <q-slide-item @right="onSlidingLeft" right-color="faded">
     <template v-slot:right>
+      {{ item.title }}
       <q-btn
         @click="showPopup"
         icon="mdi-square-edit-outline"
