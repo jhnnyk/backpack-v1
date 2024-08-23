@@ -25,7 +25,12 @@
               <div>
                 {{ element.name }}
 
-                <q-badge class="q-ml-xs" color="accent" rounded>
+                <q-badge
+                  v-if="storeSettings.settings.showUnfinishedTodoCount"
+                  class="q-ml-xs"
+                  color="accent"
+                  rounded
+                >
                   {{
                     element.content.filter(
                       (item) => item.type == 'todo' && item.completed == false
@@ -65,9 +70,11 @@
 <script setup>
 import { Sortable } from 'sortablejs-vue3'
 import { useStorePages } from 'src/stores/storePages'
+import { useStoreSettings } from 'src/stores/storeSettings'
 import LoadingSpinner from '../LoadingSpinner.vue'
 
 const storePages = useStorePages()
+const storeSettings = useStoreSettings()
 
 const sortPages = (evt) => {
   const movedEntry = storePages.pages[evt.oldIndex]
