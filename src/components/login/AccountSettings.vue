@@ -12,8 +12,8 @@
       <div class="row no-wrap q-pa-md">
         <div class="column">
           <div class="text-h6 q-mb-md">Settings</div>
-          <q-toggle v-model="mobileData" label="Use Mobile Data" />
-          <q-toggle v-model="bluetooth" label="Bluetooth" />
+          <q-toggle v-model="mobileData" label="show Todo count" />
+          <q-toggle v-model="bluetooth" label="confirm deletes" />
         </div>
 
         <q-separator vertical inset class="q-mx-lg" />

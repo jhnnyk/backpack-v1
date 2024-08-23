@@ -24,9 +24,11 @@
             <q-item-section class="text-grey-9">
               {{ element.name }}
             </q-item-section>
-            <!-- <q-item-section side>{{
-              storeTodos.pageTodos(page.id).length
-            }}</q-item-section> -->
+            <q-item-section side>{{
+              element.content.filter(
+                (item) => item.type == 'todo' && item.completed == false
+              ).length
+            }}</q-item-section>
             <q-item-section v-if="storePages.options.showPageOptions" side>
               <div>
                 <q-btn icon="mdi-square-edit-outline" size="sm" flat round />
