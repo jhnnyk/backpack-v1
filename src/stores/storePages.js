@@ -226,6 +226,13 @@ export const useStorePages = defineStore('pages', () => {
     })
   }
 
+  // getters
+  const unfinishedTodoCount = (page) => {
+    return page.content.filter(
+      (item) => item.type == 'todo' && item.completed == false
+    ).length
+  }
+
   return {
     pages,
     error,
@@ -244,5 +251,6 @@ export const useStorePages = defineStore('pages', () => {
     updateContentItem,
     deleteContentItem,
     deletePage,
+    unfinishedTodoCount,
   }
 })

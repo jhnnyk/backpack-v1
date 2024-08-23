@@ -31,11 +31,7 @@
                   color="accent"
                   rounded
                 >
-                  {{
-                    element.content.filter(
-                      (item) => item.type == 'todo' && item.completed == false
-                    ).length
-                  }}
+                  {{ storePages.unfinishedTodoCount(element) }}
                 </q-badge>
               </div>
             </q-item-section>
