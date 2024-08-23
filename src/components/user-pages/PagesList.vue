@@ -22,13 +22,19 @@
               <q-icon name="mdi-shopping" />
             </q-item-section>
             <q-item-section class="text-grey-9">
-              {{ element.name }}
+              <div>
+                {{ element.name }}
+
+                <q-badge class="q-ml-xs" color="accent" rounded>
+                  {{
+                    element.content.filter(
+                      (item) => item.type == 'todo' && item.completed == false
+                    ).length
+                  }}
+                </q-badge>
+              </div>
             </q-item-section>
-            <q-item-section side>{{
-              element.content.filter(
-                (item) => item.type == 'todo' && item.completed == false
-              ).length
-            }}</q-item-section>
+
             <q-item-section v-if="storePages.options.showPageOptions" side>
               <div>
                 <q-btn icon="mdi-square-edit-outline" size="sm" flat round />
