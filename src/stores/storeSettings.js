@@ -16,11 +16,11 @@ export const useStoreSettings = defineStore('settings', () => {
 
   // actions
   const saveSettings = () => {
-    LocalStorage.set('settings', settings)
+    LocalStorage.set('settingsBackpackApp', settings)
   }
 
   const loadSettings = () => {
-    const savedSettings = LocalStorage.getItem('settings')
+    const savedSettings = LocalStorage.getItem('settingsBackpackApp')
 
     if (savedSettings) {
       Object.assign(settings, savedSettings)
