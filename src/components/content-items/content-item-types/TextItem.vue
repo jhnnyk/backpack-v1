@@ -42,6 +42,7 @@
             v-model="scope.value"
             paragraph-tag="p"
             :toolbar="storePages.textEditorToolbar"
+            max-height="70vh"
             autofocus
           />
         </q-popup-edit>
